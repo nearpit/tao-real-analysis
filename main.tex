@@ -1,0 +1,117 @@
+\documentclass[11pt]{report}
+\title{Solutions for \textit{Analysis I}\&\textit{II} (Forth Edition) by Terence Tao}
+\author{Ilia Koloiarov}
+\linespread{1.2}
+\usepackage{stmaryrd}
+\usepackage{amssymb,amsmath,amsthm,,mathrsfs}
+\setlength{\thickmuskip}{2mu plus 2mu}
+
+\DeclareMathOperator{\next}{\!+\!+}
+\DeclareMathOperator{\contreq}{\stackrel{\lightning}{=}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+
+\newtheorem{axiom}{Axiom}[chapter]
+\renewcommand{\theaxiom}{\arabic{chapter}.\arabic{axiom}}
+
+\newtheorem{definition}{Definition}[section]
+\renewcommand{\thedefinition}{\thesection.\arabic{definition}}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{theorem}[definition]{Theorem}
+\newcommand{\forcenumber}[1]{\setcounter{definition}{#1}\addtocounter{definition}{-1}}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\chapter{Introduction}
+No exercises in this chapter.
+
+\chapter{Starting at the beginning: the natural numbers}
+\section{The Peano axioms}
+
+
+\begin{axiom}
+    $0$ is a natural number.\label{ax:zero_nat}
+\end{axiom}
+
+\begin{axiom}
+    If $n$ is a natural number, then $n\next$ is also a natural number.\label{ax:suc_n_nat}
+\end{axiom}
+
+\begin{axiom}
+ $0$ is not the successor of any natural number; i.e., we have $n\next\neq 0$ for every natural number $n$.\label{ax:zero_no_suc}
+\end{axiom}
+
+
+
+\begin{axiom}
+    Different natural numbers must have different successors; i.e., if $n, m$ are natural numbers and $n\neq m$, then $n\next\neq m\next$. Equivalently, if $n\next=m\next$, then we must have $n=m$.\label{ax:nat_diff_succ}
+\end{axiom}
+
+\begin{axiom}
+    (Principle of mathematical induction). Let $P(n)$ be any property pertaining to a natural number $n$. Suppose that $P(0)$ is true, and suppose that whenever $P(n)$ is true, $P(n\next)$ is also true. Then $P(n)$ is true for every natural number $n$.\label{ax:induc}
+\end{axiom}
+
+\forcenumber{3}
+\begin{definition}
+    We define $1$ to be the number $0\next$, $2$ to be the number $(0\next)\next$, etc.\label{def:nat_num_repres}
+\end{definition}
+
+\pagebreak
+\begin{proposition}
+    $3$ is a natural number.
+\end{proposition}
+\begin{proof}
+    Given the Axiom~\ref{ax:zero_nat}, $0$ is a natural number. $1:=0\next$ is a natural number by Axiom~\ref{ax:suc_n_nat}. Same as $2:=1\next$ and $3:=2\next$.
+\end{proof}
+
+\forcenumber{6}
+\begin{proposition}
+    $4$ is not equal to $0$.\label{prop:4-not-0}
+\end{proposition}
+\begin{proof}
+    By Definition~\ref{def:nat_num_repres}, $4:=3\next$, thus $3\next\contreq0$ what contradicts Axiom~\ref{ax:zero_no_suc}
+\end{proof}
+
+\forcenumber{8}
+\begin{proposition}
+    $6$ is not equal to $2$
+\end{proposition}
+\begin{proof}
+    Let's assume that $6=2$. By Definition~\ref{def:nat_num_repres}, $6=5\next$ and $2=1\next$. That means, $5=1$ by Axiom~\ref{ax:nat_diff_succ}. 
+    Repeating the procedure, we end up with $4\contreq0$ what contradicts previously proven Proposition~\ref{prop:4-not-0}
+\end{proof}
+
+\forcenumber{16}
+\begin{proposition}
+    (Recursive definitions). Suppose for each
+    natural number n, we have some function $f_n: \N \to \N$ from
+    the natural numbers to the natural numbers. Let $c$ be a natural
+    number. Then we can assign a \underline{unique} natural number to each
+    natural number n, such that $a_0 = c$ and $a_{n\next} = f_n(a_n)$ for each
+    natural number n.
+\end{proposition}
+
+\begin{proof}
+    First, none of $a_n$ redefines $a_0$ by Axiom~\ref{ax:zero_no_suc}. 
+    Second, let's assume that the procedure gives the unique value for $a_n$. 
+    Then it also provides the unique value for $a_{n\next}$ by Axiom~\ref{ax:nat_diff_succ}
+    what closes the induction. 
+\end{proof}
+
+\pagebreak
+\section{Addition}
+
+\begin{definition}
+     (Addition of natural numbers). Let m be $a$ natural number. To add zero to m, 
+     we define $0 + m := m$. Now suppose inductively that we have defined how to add n to m. 
+     Then we can add $n\next$ to m by defining $(n\next) + m := (n + m)\next$.
+\end{definition}
+
+\end{document}
