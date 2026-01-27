@@ -2,10 +2,10 @@
 \title{Solutions for \textit{Analysis I}\&\textit{II} (Forth Edition) by Terence Tao}
 \author{Ilia Koloiarov}
 \linespread{1.2}
+\usepackage[margin=100pt,footskip=0.25in]{geometry}
 \usepackage{stmaryrd}
 \usepackage{amssymb,amsmath,amsthm,,mathrsfs}
-\setlength{\thickmuskip}{2mu plus 2mu}
-
+\setlength{\thickmuskip}{5mu plus 3mu}
 \DeclareMathOperator{\next}{\!+\!+}
 \DeclareMathOperator{\contreq}{\stackrel{\lightning}{=}}
 \newcommand{\N}{\mathbb{N}}
@@ -47,8 +47,6 @@ No exercises in this chapter.
 \begin{axiom}
  $0$ is not the successor of any natural number; i.e., we have $n\next\neq 0$ for every natural number $n$.\label{ax:zero_no_suc}
 \end{axiom}
-
-
 
 \begin{axiom}
     Different natural numbers must have different successors; i.e., if $n, m$ are natural numbers and $n\neq m$, then $n\next\neq m\next$. Equivalently, if $n\next=m\next$, then we must have $n=m$.\label{ax:nat_diff_succ}
@@ -111,7 +109,40 @@ No exercises in this chapter.
 \begin{definition}
      (Addition of natural numbers). Let m be $a$ natural number. To add zero to m, 
      we define $0 + m := m$. Now suppose inductively that we have defined how to add n to m. 
-     Then we can add $n\next$ to m by defining $(n\next) + m := (n + m)\next$.
+     Then we can add $n\next$ to m by defining $(n\next) + m := (n + m)\next$.\label{def:sum}
 \end{definition}
+
+\begingroup
+\renewcommand{\thedefinition}{2.2.1.a}
+\begin{proposition}
+The sum of two natural numbers is again a natural number. 
+\end{proposition}
+\endgroup
+
+\begin{proof}
+    We induct on $n$. Using Definition~\ref{def:sum}, $0+m:=m$ is a natural number by the proposition's assumption. Let's assume that $n+m$ is a natural number. Then $(n\next)+m:=(n+m)\next$ by Definition~\ref{def:sum} and $(n+m)\next$ is a natural number by Axiom~\ref{ax:suc_n_nat}. That closes the induction.
+\end{proof}
+
+\forcenumber{2}
+\begin{lemma}
+    For any natural number $n$, $n+0=n$.
+\end{lemma}
+
+\begin{proof}
+    Guess what, we use induction. Given that $0$ is a natural number and Definition~\ref{def:sum}, $0+0:=0$ what proves the base case. Let's assume that $n+0:=n$, then $(n\next)+0:=(n+0)\next$ using Definition~\ref{def:sum}, and $(n+0)\next=n\next$ by the induction assumption what proves the step case. That closes the induction. 
+\end{proof}
+
+\begin{lemma}
+    For any natural numbers of $n$ and $m$, $n+(m\next)= (n+m)\next$
+\end{lemma}
+\begin{proof}
+    Let's induct on $n$. To prove the base case, $0+(m\next):= m\next$ $:=(0+m)\next$ using Definition~\ref{def:sum}. For the step case, we need to prove $\left(n\next\right)+(m\next)=((n\next)+m)\next$. Let's assume $n+(m\next) = (n+m)\next$, then
+    \begin{align*}
+        (n\next)+(m\next)&:= (n+(m\next))\next &&\text{Definition~\ref{def:sum}}\\
+        & =((n+m)\next)\next &&\text{induction assumption}\\
+        & = ((n\next)+m)\next &&\text{Definition~\ref{def:sum}}
+    \end{align*}
+    What closes the induction.
+\end{proof}
 
 \end{document}
