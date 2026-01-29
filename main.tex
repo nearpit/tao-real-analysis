@@ -1,5 +1,7 @@
 \documentclass[11pt]{report}
-\title{Solutions for \textit{Analysis I}\&\textit{II} (Forth Edition) by Terence Tao}
+\title{Solutions for\\
+\textit{Analysis I}\&\textit{II} (Forth Edition)\\
+by Terence Tao}
 \author{Ilia Koloiarov}
 \linespread{1.2}
 \usepackage[margin=100pt,footskip=0.25in]{geometry}
@@ -25,7 +27,14 @@
 \newtheorem{proposition}[definition]{Proposition}
 \newtheorem{theorem}[definition]{Theorem}
 \newtheorem{corollary}[definition]{Corollary}
+
+\newtheorem{exercise}{Exercise}
+\renewcommand{\theexercise}{\thesection.\arabic{exercise}}
+
 \newcommand{\forcenumber}[1]{\setcounter{definition}{#1}\addtocounter{definition}{-1}}
+\newenvironment{solution}
+  {\begin{proof}[Solution]}
+  {\end{proof}}
 
 \makeatletter % Unlocks internal commands with @
 \newcounter{parentnumber}
@@ -42,6 +51,8 @@
 }
 \makeatother % Locks internal commands again
 
+
+
 \begin{document}
 \maketitle
 \tableofcontents
@@ -50,210 +61,9 @@
 No exercises in this chapter.
 
 \chapter{Starting at the beginning: the natural numbers}
-\section{The Peano axioms}
-
-
-\begin{axiom}
-    $0$ is a natural number.\label{ax:zero_nat}
-\end{axiom}
-
-\begin{axiom}
-    If $n$ is a natural number, then $n\next$ is also a natural number.\label{ax:suc_n_nat}
-\end{axiom}
-
-\begin{axiom}
- $0$ is not the successor of any natural number; i.e., we have $n\next\neq 0$ for every natural number $n$.\label{ax:zero_no_suc}
-\end{axiom}
-
-\begin{axiom}
-    Different natural numbers must have different successors; i.e., if $n, m$ are natural numbers and $n\neq m$, then $n\next\neq m\next$. Equivalently, if $n\next=m\next$, then we must have $n=m$.\label{ax:nat_diff_succ}
-\end{axiom}
-
-\begin{axiom}
-    \textup{(Principle of mathematical induction)}. Let $P(n)$ be any property pertaining to a natural number $n$. Suppose that $P(0)$ is true, and suppose that whenever $P(n)$ is true, $P(n\next)$ is also true. Then $P(n)$ is true for every natural number $n$.\label{ax:induc}
-\end{axiom}
-
-\forcenumber{3}
-\begin{definition}
-    We define $1$ to be the number $0\next$, $2$ to be the number $(0\next)\next$, etc.\label{def:nat_num_repres}
-\end{definition}
-
-\pagebreak
-\begin{proposition}
-    $3$ is a natural number.
-\end{proposition}
-\begin{proof}
-    Given the Axiom~\ref{ax:zero_nat}, $0$ is a natural number. $1:=0\next$ is a natural number by Axiom~\ref{ax:suc_n_nat}. Same as $2:=1\next$ and $3:=2\next$.
-\end{proof}
-
-\forcenumber{6}
-\begin{proposition}
-    $4$ is not equal to $0$.\label{prop:4-not-0}
-\end{proposition}
-\begin{proof}
-    By Definition~\ref{def:nat_num_repres}, $4:=3\next$, thus $3\next\contreq0$ what contradicts Axiom~\ref{ax:zero_no_suc}
-\end{proof}
-
-\forcenumber{8}
-\begin{proposition}
-    $6$ is not equal to $2$
-\end{proposition}
-\begin{proof}
-    Let's assume that $6=2$. By Definition~\ref{def:nat_num_repres}, $6=5\next$ and $2=1\next$. That means, $5=1$ by Axiom~\ref{ax:nat_diff_succ}. 
-    Repeating the procedure, we end up with $4\contreq0$ what contradicts previously proven Proposition~\ref{prop:4-not-0}
-\end{proof}
-
-\forcenumber{16}
-\begin{proposition}
-    (Recursive definitions). Suppose for each
-    natural number n, we have some function $f_n: \N \to \N$ from
-    the natural numbers to the natural numbers. Let $c$ be a natural
-    number. Then we can assign a \underline{unique} natural number to each
-    natural number n, such that $a_0 = c$ and $a_{n\next} = f_n(a_n)$ for each
-    natural number n.
-\end{proposition}
-
-\begin{proof}
-    First, none of $a_n$ redefines $a_0$ by Axiom~\ref{ax:zero_no_suc}. 
-    Second, let's assume that the procedure gives the unique value for $a_n$. 
-    Then it also provides the unique value for $a_{n\next}$ by Axiom~\ref{ax:nat_diff_succ}
-    what closes the induction. 
-\end{proof}
-
-\pagebreak
-\section{Addition}
-
-\begin{definition}
-     (Addition of natural numbers). Let m be $a$ natural number. To add zero to m, 
-     we define $0 + m := m$. Now suppose inductively that we have defined how to add n to m. 
-     Then we can add $n\next$ to m by defining $(n\next) + m := (n + m)\next$.\label{def:sum}
-\end{definition}
-
-\begin{subsequence}
-    \begin{proposition}
-    \color{red}
-    The sum of two natural numbers is again a natural number. 
-    \end{proposition}    
-\end{subsequence}
-
-\begin{proof}
-    We induct on $n$. Using Definition~\ref{def:sum}, $0+m:=m$ is a natural number by the proposition's assumption. Let's assume that $n+m$ is a natural number. Then $(n\next)+m:=(n+m)\next$ by Definition~\ref{def:sum} and $(n+m)\next$ is a natural number by Axiom~\ref{ax:suc_n_nat}. That closes the induction.
-\end{proof}
-
-\begin{lemma}
-    For any natural number $n$, $n+0=n$.\label{lem:sum_zero_commutative}
-\end{lemma}
-
-\begin{proof}
-    Guess what, we use induction. Given that $0$ is a natural number and Definition~\ref{def:sum}, $0+0:=0$ what proves the base case. Let's assume that $n+0:=n$, then $(n\next)+0:=(n+0)\next$ using Definition~\ref{def:sum}, and $(n+0)\next=n\next$ by the induction assumption what proves the step case. That closes the induction. 
-\end{proof}
-
-\begin{lemma}
-    For any natural numbers $n$ and $m$, $n+(m\next)= (n+m)\next$.\label{lem:suc_commutative}
-\end{lemma}
-\begin{proof}
-    Let's induct on $n$. To prove the base case, $0+(m\next):= m\next$ $:=(0+m)\next$ using Definition~\ref{def:sum}. For the step case, we need to prove $\left(n\next\right)+(m\next)=((n\next)+m)\next$. Let's assume $n+(m\next) = (n+m)\next$, then
-    \begin{align*}
-        (n\next)+(m\next)&:= (n+(m\next))\next &&\text{Definition~\ref{def:sum}}\\
-        & =((n+m)\next)\next &&\text{Inductive Hypothesis}\\
-        & = ((n\next)+m)\next &&\text{Definition~\ref{def:sum}}
-    \end{align*}
-    What closes the induction.
-\end{proof}
-
-\begin{subsequence}
-    \begin{corollary}
-    \color{red}
-    For any natural number $n$, $n\next = n+1$.
-    \end{corollary}    
-\end{subsequence}
-
-\begin{proof}
-    The base case:
-    \begin{align*}
-        0\next &= (0+0)\next && \text{Definition~\ref{def:sum}}\\
-        &=0+(0\next) && \text{Lemma~\ref{lem:suc_commutative}}\\
-        &=0+1 && \text{Definition~\ref{def:nat_num_repres}}
-    \end{align*}
-    For the step case, we need to prove $(n\next)\next = (n\next)+1$, assuming $n\next=n+1$:
-    \begin{align*}
-        (n\next)\next &= ((n+0)\next)\next && \text{Definition~\ref{def:sum}}\\
-        &= (n + 0\next)\next && \text{Lemma~\ref{lem:suc_commutative}}\\
-        &= (n+1)\next && \text{Definition~\ref{def:nat_num_repres}}\\
-        &= (n\next)+1 && \text{Definition~\ref{def:sum}}
-    \end{align*}
-\end{proof}
-
-\begin{proposition}
-    \textup{(Addition is commutative)}. For any natural numbers $n$ and $m$, $n+m=m+n$.\label{prop:add_commutative}
-\end{proposition}
-\begin{proof}
-    Let's (again) induct on $n$. For the base case we need to prove $0+m=m+0$. The left term equals to $m$ by Definition~\ref{def:sum}. The right term equals also to $m$ by Lemma~\ref{lem:sum_zero_commutative}. Thus, both terms are equal. 
-    For the step case, we need to prove $(n\next)+m=m+(n\next)$, assuming $n+m=m+n$:
-    \begin{align*}
-        (n\next)+m &= (n+m)\next && \text{Definition~\ref{def:sum}}\\
-        &=(m+n)\next && \text{Inductive Hypothesis}\\
-        &=(m+(n\next)) && \text{Lemma~\ref{lem:suc_commutative}}
-    \end{align*}
-    What closes the induction.
-\end{proof}
-
-\begin{proposition}
-    \color{red}
-    \textup{(Addition is associative).} For any natural numbers $a, b, c$, we have $(a+b)+c=a+(b+c)$.
-\end{proposition}
-\begin{proof}
-    Let's induct on $a$. For the base case, we need to prove 
-    \begin{align*}
-        &&(0+b)+c&=0+(b+c)\\
-        \text{Definition~\ref{def:sum}}&&b+c&=b+c&&\text{Lemma~\ref{lem:sum_zero_commutative}}
-    \end{align*}
-    For the step case, we need to prove $((a\next)+b)+c=(a\next)+(b+c)$, assuming $(a+b)+c=a+(b+c)$:
-    \begin{align*}
-        ((a\next)+b)+c&=((a+b)\next) + c && \text{Definition~\ref{def:sum}}\\
-        &=((a+b)+c)\next &&\text{Definition~\ref{def:sum}}\\
-        &=(a+(b+c))\next &&\text{Inductive Hypothesis}\\
-        &=(a\next)+(b+c) &&\text{Definition~\ref{def:sum}}
-    \end{align*}
-    what closes the induction.
-\end{proof}
-
-\begin{proposition}
-    \textup{(Cancellation Law).} Let $a, b, c$ be natural numbers such $a+b=a+c$. Then we have $b=c$.
-\end{proposition}
-\begin{proof}
-    Let's induct on $a$. The base case, we need to prove $0+b=0+c$ what leads to $b=c$ by Definition~\ref{def:sum}. For the step case, 
-    we need to prove if $(a\next)+b=(a\next)+c$, assuming $a+b=a+c$, then $b=c$.
-    \begin{align*}
-        (a\next)+b&=(a\next)+c\\
-        (a+b)\next&=(a+c)\next &&\text{Definition~\ref{def:sum}}\\
-        (a+b)&=(a+c) && \text{Axiom~\ref{ax:nat_diff_succ}}\\
-        b&=c&&\text{Inductive Hypothesis}
-    \end{align*}
-\end{proof}
-
-\begin{definition}
-    \textup{(Positive natural numbers)}. A natural number $n$ is said to be positive iff it is not equal to $0$.\label{def:pos_nat} 
-\end{definition}
-\begin{proposition}
-     If $a$ is positive and $b$ is a natural number, then $a + b$ is positive.
-\end{proposition}
-\begin{proof}
-    Let's induct on $b$. For the base case, $a+0=a$ by Definition~\ref{def:sum}. The result is positive by the propositional assumption. For the step case, we need to prove $a+(b\next)$ is positive, assuming $a+b$ is positive. $a+(b\next)=(a+b)\next$ by Lemma~\ref{lem:suc_commutative}. Given Axiom~\ref{ax:zero_no_suc}, $(a+b)\next$ is positive as well, what closes the induction.
-\end{proof}
-\begin{corollary}
-    \color{red}
-    If $a$ and $b$ are natural numbers such that $a+b =0$, then $a = 0$ and $b = 0$.
-\end{corollary}
-\begin{proof}
-    Let's assume that $a\neq0$ and induct on $b$. For the base case, we'll need to prove $a+0=0$. The left term equals to $a$ by Lemma~\ref{lem:sum_zero_commutative}, what contradicts our assumption $a\neq 0$. Doing the same for $b$, we'll end up with the same outcome. What leads to the conclusion that $a$ and $b$ must be both $0$.
-\end{proof}
-
-\begin{lemma}
-    \color{red}
-    Let $a$ be a positive number. Then there exists exactly one natural number $b$ such that $b\next = a$.
-\end{lemma}
-\begin{proof}
-    Suppose for sake of contradiction, there is another natural number $c$ such that $c\next=a$. Then $b\next=c\next$, what makes $b=c$ by Axiom~\ref{ax:nat_diff_succ}.
-\end{proof}
+\include{chapters/nat_numbers}
+\appendix
+\chapter{The basics of mathematical logic}
+\include{appendix/math_logic}
+\chapter{The decimal system}
 \end{document}
