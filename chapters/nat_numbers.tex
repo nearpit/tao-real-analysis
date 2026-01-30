@@ -50,6 +50,15 @@
     Let's assume that $6=2$. By Definition~\ref{def:nat_num_repres}, $6=5\next$ and $2=1\next$. That means, $5=1$ by Axiom~\ref{ax:nat_diff_succ}. 
     Repeating the procedure, we end up with $4\contreq0$ what contradicts previously proven Proposition~\ref{prop:4-not-0}
 \end{proof}
+\begin{subsequence}
+    \begin{lemma}
+        \color{red}
+        For any natural number $n$, $n\neq n\next$.\label{lem:n!=n++}
+    \end{lemma}
+\end{subsequence}
+\begin{proof}
+    For the base case, $0\neq 0\next$ by Axiom~\ref{ax:zero_no_suc}. For the step case, we need to prove if $n\neq n\next$, then $n\next\neq (n\next)\next$. Let's assume that $n\next = (n\next)\next$. Then by Axiom~\ref{ax:nat_diff_succ}, $n\contreq n\next$, what contradicts the inductive hypothesis. Now we have closed the induction.
+\end{proof}
 
 \forcenumber{16}
 \begin{proposition}
@@ -67,6 +76,8 @@
     Then it also provides the unique value for $a_{n\next}$ by Axiom~\ref{ax:nat_diff_succ}
     what closes the induction. 
 \end{proof}
+
+
 
 \pagebreak
 \section{Addition}
@@ -210,17 +221,13 @@
 \end{definition}
 
 \begin{subsequence}
+    
     \begin{lemma}
         \color{red}
         For any natural number $n$, $n\next > n$.\label{lem:nnext>n}
     \end{lemma}  
     \begin{proof}
-        Proof by induction. For the base case, we need to prove $0\next > 0$. The left term $n$ can be represented in the form of $m+a$ as $0+1$ by Corollary~\ref{cor:nnext=n+1} which is equal to $1$ by Definition~\ref{def:sum}. Then we can conclude that $0\next> 0$ because $1 \neq 0$ using Definition~\ref{def:nat_order}. For the step case, we need to prove $(n\next)\next > n\next$ assuming $n\next > n$:
-        \begin{align*}
-            (n\next)\next &> n\next \\
-            n\next&>n && \text{Axiom~\ref{ax:nat_diff_succ}}
-        \end{align*}
-        what closes the induction using the inductive hypothesis.
+        For any natural number, we know that $n\next=n+1$ from Corollary~\ref{cor:nnext=n+1}. Then using the fact that $n\neq n\next$ from Lemma~\ref{lem:n!=n++}, we can conclude $n\next > n$ by Definition~\ref{def:nat_order}.
     \end{proof}  
 \end{subsequence}
 \begin{proposition}
@@ -229,34 +236,47 @@
 \begin{subsequence}
     \begin{proposition}
         \color{red}
-        \textup{(Order is reflexive)} $a \geq a$.
+        \textup{(Order is reflexive)} $a \geq a$.\label{prop:order_reflexive}
     \end{proposition}
     \begin{proof}
-        The base case $0\geq 0$: The left term can be represented as $0=0+0$ by Definition~\ref{def:sum}. Thus, $0\geq 0$ by Definition~\ref{def:nat_order}. The step case $a\next \geq a\next$, assuming $a\geq a$. The equation can be transformed into $a\geq a$ by Axiom~\ref{ax:nat_diff_succ} what closes the induction by the inductive hypothesis. 
+        Any natural number $a$ can be represented $a=a + 0$ using Lemma~\ref{lem:sum_zero_commutative} what proves by Definition~\ref{def:nat_order} that $a\geq a$. 
     \end{proof}
     \begin{proposition}
         \color{red}
-        \textup{(Order is transitive)}  If $a \geq b$ and $b \geq c$, then $a \geq c$.
+        \textup{(Order is transitive)}  If $a \geq b$ and $b \geq c$, then $a \geq c$.\label{prop:order_transitive}
     \end{proposition}
     \begin{proof}
         Given Definition~\ref{def:nat_order} and the propositional assumption, $b$ can be represented as $c+\tilde{c}$ and $a$ can be represented as $b+\tilde{b}$ where $\tilde{b}$ and $\tilde{c}$ are natural numbers. Then combining both representations, $a=b+\tilde{b}=(c+\tilde{c}) + \tilde{b}=c+(\tilde{c}+\tilde{b})$ using Proposition~\ref{prop:sum_associative}. $\tilde{c} + \tilde{b}$ is a natural number by Proposition~\ref{prop:sum_nat_is_nat} what leads us to $a\geq c$ by Definition~\ref{def:nat_order}.
     \end{proof}
     \begin{proposition}
         \color{red}
-        \textup{(Order is antisymmetric)} If $a \geq b$ and $b \geq a$, then $a = b$.
+        \textup{(Order is antisymmetric)} $a \geq b$ and $b \geq a$ iff $a = b$.\label{prop:order_antisymmetric}\\
+        (Original) if $a \geq b$ and $b \geq a$, then $a = b$.
     \end{proposition}
     \begin{proof}
-        By the propositional assumption and Definition~\ref{def:nat_order}, $a=b+\tilde{b}$ and $b=a+\tilde{a}$. Combining both terms, $a=b+\tilde{a}=(a+\tilde{a})+\tilde{a}$ what equals to $a+(\tilde{a}+\tilde{a})$ using Proposition~\ref{prop:sum_associative}. Recalling the Cancellation Law from Proposition~\ref{prop:cancel_law}, $(\tilde{a} + \tilde{a})$ must be equal to $0$ since $a=a+0$ by Definition~\ref{def:sum}. By Corollary~\ref{cor:a+b=0}, $\tilde{a}=0$. Plugging it back to $b=a+\tilde{a}=a+0=a$ what closes the proof.
+        The forward pass: by the propositional assumption and Definition~\ref{def:nat_order}, $a=b+\tilde{b}$ and $b=a+\tilde{a}$. Combining both terms, $a=b+\tilde{a}=(a+\tilde{a})+\tilde{a}$ what equals to $a+(\tilde{a}+\tilde{a})$ using Proposition~\ref{prop:sum_associative}. Recalling Cancellation Law from Proposition~\ref{prop:cancel_law}, $(\tilde{a} + \tilde{a})$ must be equal to $0$ since $a=a+0$ by Definition~\ref{def:sum}. By Corollary~\ref{cor:a+b=0}, $\tilde{a}=0$. Plugging it back to $b=a+\tilde{a}=a+0=a$. The reverse pass: if $a=b$, then $a\geq b$ and $b \geq a$. If $a=b$, we can use the reflexivity of order from Proposition~\ref{prop:order_reflexive} to transform $a\geq a$ and $b \geq b$ to $a \geq b$ and $b \geq a$ respectively. That closes the proof in both directions.
     \end{proof}
+
     \begin{proposition}
+        \color{red}
         \textup{(Addition preserves order)}  $a \geq b$ if and only if $a + c \geq b + c$.
     \end{proposition}
     \begin{proof}
+        Let's start with the true case: if $a \geq b$, then $a+c \geq b+c$. If $a \geq b$, then we can represent $a=b+\tilde{b}$ by Definition~\ref{def:nat_order}. Plugging the expression into $a+c$ results in $(b+\tilde{b}) + c$. Using Proposition~\ref{prop:sum_associative} and Proposition~\ref{prop:add_commutative}, we can transform the expression into $(b+c)+ \tilde{b}$ what proves $a+c \geq b+c$ by Definition~\ref{def:nat_order}. Now the false case: if $a<b$, then $a+c < b+c$. If $a<b$, then $b=a+\tilde{a}$ and $b\neq a$ by Definition~\ref{def:nat_order}. Using the expression in $b+c$ results in $(a+\tilde{a})+c$. Again using Propositions~\ref{prop:sum_associative} and\ \ref{prop:add_commutative}, we end up with $(a+c)+\tilde{a}$, what proves $b+c\geq a+c$ by Definition~\ref{def:nat_order}. Now we need to show that $(a+c)\neq(b+c)$. Let's assume they are equal. Then by Cancellation Law from Proposition~\ref{prop:cancel_law}, we can get rid of $c$, what results in $a\contreq b$. That contradicts the antecedent $a<b$, from which we know that $a\neq b$. Thus, $a+c<b+c$, what closes the proof for all cases.
     \end{proof}
     \begin{proposition}
+        \color{red}
+        $a < b$ if and only if $b = a + d$ for some positive number $d$.\label{prop:a<b with d positive}
+    \end{proposition}
+    \begin{proof}
+        For the true case we need to prove That if $a < b$, then $b=a+d$ and $d\neq 0$. If $a < b$, then $b=a+d$ and $b\neq a$ by Definition~\ref{def:nat_order}. Let's assume that $d$ is not a positive natural number (i.e. $d=0$). Then $a+d=a+0=a\contreq b$ by the antecedent $b\neq a$. For the false case, we need to prove that if $a\geq b$, then $b\neq a + d$ or $d=0$. If $a \geq b$, then $a=b+d$ and $d$ is a natural number (including zero) by Definition~\ref{def:nat_order}, what contradicts $d=0$. That closes both cases.
+    \end{proof}
+    \begin{proposition}
+        \color{red}
         $a < b$ if and only if $a\next \leq b$.
     \end{proposition}
-    \begin{proposition}
-        $a < b$ if and only if $b = a + d$ for some positive number $d$.
-    \end{proposition}
+    \begin{proof}
+        For reverse pass, we need to prove if $a\next \leq b$, then $a < b$. Combining Definition~\ref{def:nat_order} and associativity from Proposition~\ref{prop:sum_associative}, we can infer $b=(a\next)+d=a+(d\next)$ where $d\next$ is a positive natural number by Axiom~\ref{ax:zero_no_suc}. Thus, we can conclude that $b>a$ by Proposition~\ref{prop:a<b with d positive}. Then for the false case, we need to prove if $a\next > b$, then $a \geq b$. If $a\next > b$, then $a\next=b+(d\next)=(b+d)\next$ using Proposition~\ref{prop:a<b with d positive} and Definition~\ref{def:sum}, where $d\next$ is a positive number by Axiom~\ref{ax:zero_no_suc}. Then by Axiom~\ref{ax:nat_diff_succ}, we can infer $a=b+d$ what proves $a\geq b$ by Definition~\ref{def:nat_num_repres}. 
+    \end{proof}
+
 \end{subsequence}
