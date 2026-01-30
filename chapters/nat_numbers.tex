@@ -276,7 +276,7 @@
         $a < b$ if and only if $a\next \leq b$.
     \end{proposition}
     \begin{proof}
-        For reverse pass, we need to prove if $a\next \leq b$, then $a < b$. Combining Definition~\ref{def:nat_order} and associativity from Proposition~\ref{prop:sum_associative}, we can infer $b=(a\next)+d=a+(d\next)$ where $d\next$ is a positive natural number by Axiom~\ref{ax:zero_no_suc}. Thus, we can conclude that $b>a$ by Proposition~\ref{prop:a<b with d positive}. Then for the false case, we need to prove if $a\next > b$, then $a \geq b$. If $a\next > b$, then $a\next=b+(d\next)=(b+d)\next$ using Proposition~\ref{prop:a<b with d positive} and Definition~\ref{def:sum}, where $d\next$ is a positive number by Axiom~\ref{ax:zero_no_suc}. Then by Axiom~\ref{ax:nat_diff_succ}, we can infer $a=b+d$ what proves $a\geq b$ by Definition~\ref{def:nat_num_repres}. 
+        For true case, we need to prove if $a\next \leq b$, then $a < b$. Combining Definition~\ref{def:nat_order} and associativity from Proposition~\ref{prop:sum_associative}, we can infer $b=(a\next)+d=a+(d\next)$ where $d\next$ is a positive natural number by Axiom~\ref{ax:zero_no_suc}. Thus, we can conclude that $b>a$ by Proposition~\ref{prop:a<b with d positive}. Then for the false case, we need to prove if $a\next > b$, then $a \geq b$. If $a\next > b$, then $a\next=b+(d\next)=(b+d)\next$ using Proposition~\ref{prop:a<b with d positive} and Definition~\ref{def:sum}, where $d\next$ is a positive number by Axiom~\ref{ax:zero_no_suc}. Then by Axiom~\ref{ax:nat_diff_succ}, we can infer $a=b+d$ what proves $a\geq b$ by Definition~\ref{def:nat_num_repres}. 
     \end{proof}
 
 \end{subsequence}
