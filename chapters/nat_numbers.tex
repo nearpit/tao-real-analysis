@@ -144,7 +144,7 @@
 \end{proof}
 
 \begin{proposition}
-    \textup{(Addition is commutative)}. For any natural numbers $n$ and $m$, $n+m=m+n$.\label{prop:add_commutative}
+    \textup{(Addition is commutative)}. For any natural numbers $n$ and $m$, $n+m=m+n$.\label{prop:sum_commutative}
 \end{proposition}
 \begin{proof}
     Let's (again) induct on $n$. For the base case we need to prove $0+m=m+0$. The left term equals to $m$ by Definition~\ref{def:sum}. The right term equals also to $m$ by Lemma~\ref{lem:sum_zero_commutative}. Thus, both terms are equal. 
@@ -254,7 +254,9 @@
         (Original) if $a \geq b$ and $b \geq a$, then $a = b$.
     \end{proposition}
     \begin{proof}
-        The forward pass: by the propositional assumption and Definition~\ref{def:nat_order}, $a=b+\tilde{b}$ and $b=a+\tilde{a}$. Combining both terms, $a=b+\tilde{a}=(a+\tilde{a})+\tilde{a}$ what equals to $a+(\tilde{a}+\tilde{a})$ using Proposition~\ref{prop:sum_associative}. Recalling Cancellation Law from Proposition~\ref{prop:cancel_law}, $(\tilde{a} + \tilde{a})$ must be equal to $0$ since $a=a+0$ by Definition~\ref{def:sum}. By Corollary~\ref{cor:a+b=0}, $\tilde{a}=0$. Plugging it back to $b=a+\tilde{a}=a+0=a$. The reverse pass: if $a=b$, then $a\geq b$ and $b \geq a$. If $a=b$, we can use the reflexivity of order from Proposition~\ref{prop:order_reflexive} to transform $a\geq a$ and $b \geq b$ to $a \geq b$ and $b \geq a$ respectively. That closes the proof in both directions.
+        The forward pass: by the propositional assumption and Definition~\ref{def:nat_order}, $a=b+\tilde{b}$ and $b=a+\tilde{a}$. Combining both terms, $a=b+\tilde{a}=(a+\tilde{a})+\tilde{a}$ what equals to $a+(\tilde{a}+\tilde{a})$ using Proposition~\ref{prop:sum_associative}. Recalling Cancellation Law from Proposition~\ref{prop:cancel_law}, $(\tilde{a} + \tilde{a})$ must be equal to $0$ since $a=a+0$ by Definition~\ref{def:sum}. By Corollary~\ref{cor:a+b=0}, $\tilde{a}=0$. Plugging it back to $b=a+\tilde{a}=a+0=a$. 
+        
+        The reverse pass: if $a=b$, then $a\geq b$ and $b \geq a$. If $a=b$, we can use the reflexivity of order from Proposition~\ref{prop:order_reflexive} to transform $a\geq a$ and $b \geq b$ to $a \geq b$ and $b \geq a$ respectively. That closes the proof in both directions.
     \end{proof}
 
     \begin{proposition}
@@ -262,21 +264,44 @@
         \textup{(Addition preserves order)}  $a \geq b$ if and only if $a + c \geq b + c$.
     \end{proposition}
     \begin{proof}
-        Let's start with the true case: if $a \geq b$, then $a+c \geq b+c$. If $a \geq b$, then we can represent $a=b+\tilde{b}$ by Definition~\ref{def:nat_order}. Plugging the expression into $a+c$ results in $(b+\tilde{b}) + c$. Using Proposition~\ref{prop:sum_associative} and Proposition~\ref{prop:add_commutative}, we can transform the expression into $(b+c)+ \tilde{b}$ what proves $a+c \geq b+c$ by Definition~\ref{def:nat_order}. Now the false case: if $a<b$, then $a+c < b+c$. If $a<b$, then $b=a+\tilde{a}$ and $b\neq a$ by Definition~\ref{def:nat_order}. Using the expression in $b+c$ results in $(a+\tilde{a})+c$. Again using Propositions~\ref{prop:sum_associative} and\ \ref{prop:add_commutative}, we end up with $(a+c)+\tilde{a}$, what proves $b+c\geq a+c$ by Definition~\ref{def:nat_order}. Now we need to show that $(a+c)\neq(b+c)$. Let's assume they are equal. Then by Cancellation Law from Proposition~\ref{prop:cancel_law}, we can get rid of $c$, what results in $a\contreq b$. That contradicts the antecedent $a<b$, from which we know that $a\neq b$. Thus, $a+c<b+c$, what closes the proof for all cases.
+        Let's start with the true case: if $a \geq b$, then $a+c \geq b+c$. If $a \geq b$, then we can represent $a=b+\tilde{b}$ by Definition~\ref{def:nat_order}. Plugging the expression into $a+c$ results in $(b+\tilde{b}) + c$. Using Proposition~\ref{prop:sum_associative} and Proposition~\ref{prop:sum_commutative}, we can transform the expression into $(b+c)+ \tilde{b}$ what proves $a+c \geq b+c$ by Definition~\ref{def:nat_order}. 
+        
+        Now the false case: if $a<b$, then $a+c < b+c$. If $a<b$, then $b=a+\tilde{a}$ and $b\neq a$ by Definition~\ref{def:nat_order}. Using the expression in $b+c$ results in $(a+\tilde{a})+c$. Again using Propositions~\ref{prop:sum_associative} and\ \ref{prop:sum_commutative}, we end up with $(a+c)+\tilde{a}$, what proves $b+c\geq a+c$ by Definition~\ref{def:nat_order}. Now we need to show that $(a+c)\neq(b+c)$. Let's assume they are equal. Then by Cancellation Law from Proposition~\ref{prop:cancel_law}, we can get rid of $c$, what results in $a\contreq b$. That contradicts the antecedent $a<b$, from which we know that $a\neq b$. Thus, $a+c<b+c$, what closes the proof for all cases.
     \end{proof}
     \begin{proposition}
         \color{red}
-        $a < b$ if and only if $b = a + d$ for some positive number $d$.\label{prop:a<b with d positive}
+        $a < b$ if and only if $b = a + (d\next)$ for any natural number $d$.\label{prop:a<b with d positive}
     \end{proposition}
     \begin{proof}
-        For the true case we need to prove That if $a < b$, then $b=a+d$ and $d\neq 0$. If $a < b$, then $b=a+d$ and $b\neq a$ by Definition~\ref{def:nat_order}. Let's assume that $d$ is not a positive natural number (i.e. $d=0$). Then $a+d=a+0=a\contreq b$ by the antecedent $b\neq a$. For the false case, we need to prove that if $a\geq b$, then $b\neq a + d$ or $d=0$. If $a \geq b$, then $a=b+d$ and $d$ is a natural number (including zero) by Definition~\ref{def:nat_order}, what contradicts $d=0$. That closes both cases.
+        For the true case we need to prove that if $a < b$, then $b=a+d$ and $d\neq 0$. If $a < b$, then $b=a+d$ and $b\neq a$ by Definition~\ref{def:nat_order}. Let's assume that $d$ is not a positive natural number (i.e. $d=0$). Then $a+d=a+0=a\contreq b$ by the antecedent $b\neq a$. 
+        
+        For the false case, we need to prove that if $a\geq b$, then $b\neq a + d$ or $d=0$. If $a \geq b$, then $a=b+d$ and $d$ is a natural number (including zero) by Definition~\ref{def:nat_order}, what contradicts $d=0$. That closes both cases.
     \end{proof}
     \begin{proposition}
         \color{red}
-        $a < b$ if and only if $a\next \leq b$.
+        $a < b$ if and only if $a\next \leq b$.\label{prop:order_anext_geq_b}
     \end{proposition}
     \begin{proof}
-        For true case, we need to prove if $a\next \leq b$, then $a < b$. Combining Definition~\ref{def:nat_order} and associativity from Proposition~\ref{prop:sum_associative}, we can infer $b=(a\next)+d=a+(d\next)$ where $d\next$ is a positive natural number by Axiom~\ref{ax:zero_no_suc}. Thus, we can conclude that $b>a$ by Proposition~\ref{prop:a<b with d positive}. Then for the false case, we need to prove if $a\next > b$, then $a \geq b$. If $a\next > b$, then $a\next=b+(d\next)=(b+d)\next$ using Proposition~\ref{prop:a<b with d positive} and Definition~\ref{def:sum}, where $d\next$ is a positive number by Axiom~\ref{ax:zero_no_suc}. Then by Axiom~\ref{ax:nat_diff_succ}, we can infer $a=b+d$ what proves $a\geq b$ by Definition~\ref{def:nat_num_repres}. 
+        For true case, we need to prove if $a\next \leq b$, then $a < b$. Combining Definition~\ref{def:nat_order} and associativity from Proposition~\ref{prop:sum_associative}, we can infer $b=(a\next)+d=a+(d\next)$ where $d\next$ is a positive natural number by Axiom~\ref{ax:zero_no_suc} and Definition~\ref{def:pos_nat}. Thus, we can conclude that $b>a$ by Proposition~\ref{prop:a<b with d positive}. 
+        
+        For the false case, we need to prove if $a\next > b$\footnote{Do we need to prove that this is the false case of $a\next \leq b$?}, then $a \geq b$. If $a\next > b$, then $a\next=b+(d\next)=(b+d)\next$ using Proposition~\ref{prop:a<b with d positive} and Definition~\ref{def:sum}, where $d\next$ is a positive number by Axiom~\ref{ax:zero_no_suc}. Then by Axiom~\ref{ax:nat_diff_succ}, we can infer $a=b+d$ what proves $a\geq b$ by Definition~\ref{def:nat_num_repres}. 
     \end{proof}
-
 \end{subsequence}
+
+    
+    
+\begin{proposition}
+    \textup{(Trichotomy of order for natural numbers)}. Let $a$ and $b$ be natural numbers. Then exactly one of the following statements is true: $a<b, a=b, a>b$.         
+\end{proposition}
+\begin{proof}
+    Let's start that \textbf{no more than one} statement holds at a time. If $a=b$, then neither $a < b$ nor $a > b$ holds by Definition~\ref{def:nat_order}. If $a>b$ and $a<b$, then by Definition~\ref{def:nat_order}, $a\geq b$, $a \leq b$ and $a\neq b$. If $a \geq $b and $a \leq b$, then $a\contreq b$ using Proposition~\ref{prop:order_antisymmetric}, what contradicts the antecedent. Thus, no more than one statement holds at a time. 
+    
+    Now let's prove that there is \textbf{at least one} statement holds inducting on $a$. For the base case, $b$ can be represented as $b=0+b$ by Definition~\ref{def:sum}, what makes it $0\leq b$ by Definition~\ref{def:nat_order}. For the step case, suppose that one of the trichotomy statements holds for $a$. We need to prove whether any holds for $a\next$.  If $a<b$, then $a\next\leq b$ by Proposition~\ref{prop:order_anext_geq_b}. If $a=b$, then $a\next > b$ by Lemma~\ref{lem:nnext>n}.  If $a>b$, then $a=b+(d\next)$ by Proposition~\ref{prop:a<b with d positive}. Then we can take the successor $a\next=(b+(d\next))\next$ by Axiom~\ref{ax:nat_diff_succ}, what equals to $b+(d\next)\next$ by Definition~\ref{def:sum}. $(d\next)\next$ is a positive number by Definition~\ref{def:pos_nat} and Axiom~\ref{ax:zero_no_suc}. Thus, $a\next > b$ still holds by Proposition~\ref{prop:a<b with d positive}. That covers all possible cases and closes the induction.
+\end{proof}
+
+\begin{proposition}
+    \textup{(Strong principle of induction)}. Let $m_0$ be a natural number, and let $P(m)$ be a property pertaining to an arbitrary natural number $m$. Suppose that for each $m \geq m_0$, we have the following implication: if $P(m^\prime)$ is true for all natural numbers $m_0 \geq m^\prime < m$, then $P(m)$ is also true (in particular, this means that $P (m_0)$ is true, since in this case the hypothesis is vacuous). Then we can conclude that $P(m)$ is true for all natural numbers $m \geq m_0$.
+\end{proposition}
+\begin{proof}
+    
+\end{proof}
