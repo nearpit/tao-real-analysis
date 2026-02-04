@@ -261,7 +261,7 @@
 
     \begin{proposition}
         \color{red}
-        \textup{(Addition preserves order)}  $a \geq b$ if and only if $a + c \geq b + c$.
+        \textup{(Addition preserves order)}  $a \geq b$ if and only if $a + c \geq b + c$.\label{prop:sum_preserve_order}
     \end{proposition}
     \begin{proof}
         Let's start with the true case: if $a \geq b$, then $a+c \geq b+c$. If $a \geq b$, then we can represent $a=b+\tilde{b}$ by Definition~\ref{def:nat_order}. Plugging the expression into $a+c$ results in $(b+\tilde{b}) + c$. Using Proposition~\ref{prop:sum_associative} and Proposition~\ref{prop:sum_commutative}, we can transform the expression into $(b+c)+ \tilde{b}$ what proves $a+c \geq b+c$ by Definition~\ref{def:nat_order}. 
@@ -300,8 +300,10 @@
 \end{proof}
 
 \begin{proposition}
-    \textup{(Strong principle of induction)}. Let $m_0$ be a natural number, and let $P(m)$ be a property pertaining to an arbitrary natural number $m$. Suppose that for each $m \geq m_0$, we have the following implication: if $P(m^\prime)$ is true for all natural numbers $m_0 \geq m^\prime < m$, then $P(m)$ is also true (in particular, this means that $P (m_0)$ is true, since in this case the hypothesis is vacuous). Then we can conclude that $P(m)$ is true for all natural numbers $m \geq m_0$.
+    \textup{(Strong principle of induction)}. Let $m_0$ be a natural number, and let $P(m)$ be a property pertaining to an arbitrary natural number $m$. Suppose that for each $n \geq m_0$, we have the following implication: if $P(m)$ is true for all natural numbers $m_0 \leq m < n$, then $P(n)$ is also true (in particular, this means that $P (m_0)$ is true, since in this case the hypothesis is vacuous). Then we can conclude that $P(n)$ is true for all natural numbers $m \geq m_0$.
 \end{proposition}
 \begin{proof}
-    
+    Let's define $Q(n) \iff (m_0 \leq m < n \implies P(m))$. We'll induct on $n$. Although it's not necessary, but I'd like to state the base case explicitly. For the base case $Q(m_0)$, $m_0 \leq m \leq m_0$ and $m\neq m_0$ by Definition~\ref{def:nat_order}. Since $m_0 \leq m$ and $m_0 \geq m$, we can conclude that $m_0\contreq m$ by Proposition~\ref{prop:order_antisymmetric}, what contradicts our antecedent of $m \neq m_0$. Thus, the inductive hypothesis is vacuous, and the implication holds for all cases. 
+
+    For the step case, suppose that $Q(n)$ and $Q(n) \implies P(n)$, then $P(n), \forall m_0\leq m \leq n < n\next$ and $m\neq n$. Which is equivalent to $m_0 \leq n < n\next, P(n)$ what is by definition $Q(n\next)$. Now we have closed the induction by Axiom~\ref{ax:induc}.
 \end{proof}

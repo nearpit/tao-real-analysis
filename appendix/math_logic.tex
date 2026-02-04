@@ -37,3 +37,18 @@ $X$ and $Y$ are false or $X$ and $Y$ are true.
 \begin{solution}
     Yes, for all pairs of statements, we can construct the following. Let's start at $X$.\ (Forward direction) If $X$ is true, then $Y$ is also true.\ (Reverse direction) If $Y$ is true, then $Z$ is also true, and if $Z$ is true, then $X$ is also true. That closes the cycle in both ways for all pairs, thus the statements logically equivalent.
 \end{solution}
+
+\section{Implication}
+
+The main ideas in the chapter are the following:
+\begin{itemize}
+    \item Vacuous hypothesis is a hypothesis where an antecedent is false. Since false implies false/true is always true, it does not provide any new information. 
+    \item We can also draw the following conclusions:
+    \begin{align*}
+        X \implies Y & \iff \neg Y \implies \neg X & \text{Contrapositive}\\
+        X \implies Y & \notiff Y \implies X & \text{Converse}\\
+        X \implies Y & \notiff \neg X \implies \neg Y & \text{Inverse}
+    \end{align*}
+    \item Although, vacuous hypothesis can be viewed as ``useless'', it can still be used for a proof by contradiction, for instance. For that case, we need to have a consequent that is knows to be false. 
+\end{itemize}
+\section{The structure of proofs}
