@@ -286,6 +286,12 @@
         
         For the false case, we need to prove if $a\next > b$\footnote{Do we need to prove that this is the false case of $a\next \leq b$?}, then $a \geq b$. If $a\next > b$, then $a\next=b+(d\next)=(b+d)\next$ using Proposition~\ref{prop:a<b with d positive} and Definition~\ref{def:sum}, where $d\next$ is a positive number by Axiom~\ref{ax:zero_no_suc}. Then by Axiom~\ref{ax:nat_diff_succ}, we can infer $a=b+d$ what proves $a\geq b$ by Definition~\ref{def:nat_num_repres}. 
     \end{proof}
+    \begin{lemma}
+        $0 \leq b$ for all natural numbers.\label{lem:0leqb}
+    \end{lemma}
+    \begin{proof}
+        $b$ can be represented as $b=0+b$ by Definition~\ref{def:sum}, what makes it $0\leq b$ by Definition~\ref{def:nat_order}.
+    \end{proof}
 \end{subsequence}
 
     
@@ -296,14 +302,23 @@
 \begin{proof}
     Let's start that \textbf{no more than one} statement holds at a time. If $a=b$, then neither $a < b$ nor $a > b$ holds by Definition~\ref{def:nat_order}. If $a>b$ and $a<b$, then by Definition~\ref{def:nat_order}, $a\geq b$, $a \leq b$ and $a\neq b$. If $a \geq $b and $a \leq b$, then $a\contreq b$ using Proposition~\ref{prop:order_antisymmetric}, what contradicts the antecedent. Thus, no more than one statement holds at a time. 
     
-    Now let's prove that there is \textbf{at least one} statement holds inducting on $a$. For the base case, $b$ can be represented as $b=0+b$ by Definition~\ref{def:sum}, what makes it $0\leq b$ by Definition~\ref{def:nat_order}. For the step case, suppose that one of the trichotomy statements holds for $a$. We need to prove whether any holds for $a\next$.  If $a<b$, then $a\next\leq b$ by Proposition~\ref{prop:order_anext_geq_b}. If $a=b$, then $a\next > b$ by Lemma~\ref{lem:nnext>n}.  If $a>b$, then $a=b+(d\next)$ by Proposition~\ref{prop:a<b with d positive}. Then we can take the successor $a\next=(b+(d\next))\next$ by Axiom~\ref{ax:nat_diff_succ}, what equals to $b+(d\next)\next$ by Definition~\ref{def:sum}. $(d\next)\next$ is a positive number by Definition~\ref{def:pos_nat} and Axiom~\ref{ax:zero_no_suc}. Thus, $a\next > b$ still holds by Proposition~\ref{prop:a<b with d positive}. That covers all possible cases and closes the induction.
+    Now let's prove that there is \textbf{at least one} statement holds inducting on $a$. For the base case, $0\leq b$ by Lemma~\ref{lem:0leqb}. For the step case, suppose that one of the trichotomy statements holds for $a$. We need to prove whether any holds for $a\next$.  If $a<b$, then $a\next\leq b$ by Proposition~\ref{prop:order_anext_geq_b}. If $a=b$, then $a\next > b$ by Lemma~\ref{lem:nnext>n}.  If $a>b$, then $a=b+(d\next)$ by Proposition~\ref{prop:a<b with d positive}. Then we can take the successor $a\next=(b+(d\next))\next$ by Axiom~\ref{ax:nat_diff_succ}, what equals to $b+(d\next)\next$ by Definition~\ref{def:sum}. $(d\next)\next$ is a positive number by Definition~\ref{def:pos_nat} and Axiom~\ref{ax:zero_no_suc}. Thus, $a\next > b$ still holds by Proposition~\ref{prop:a<b with d positive}. That covers all possible cases and closes the induction.
 \end{proof}
 
 \begin{proposition}
-    \textup{(Strong principle of induction)}. Let $m_0$ be a natural number, and let $P(m)$ be a property pertaining to an arbitrary natural number $m$. Suppose that for each $n \geq m_0$, we have the following implication: if $P(m)$ is true for all natural numbers $m_0 \leq m < n$, then $P(n)$ is also true (in particular, this means that $P (m_0)$ is true, since in this case the hypothesis is vacuous). Then we can conclude that $P(n)$ is true for all natural numbers $m \geq m_0$.
+    \textup{(Strong principle of induction)}. Let $m_0$ be a natural number, and let $P(m)$ be a property pertaining to an arbitrary natural number $m$. Suppose that for each $n \geq m_0$, we have the following implication: if $P(m)$ is true for all natural numbers $m_0 \leq m < n$, then $P(n)$ is also true (in particular, this means that $P (m_0)$ is true, since in this case the hypothesis is vacuous). Then we can conclude that $P(n)$ is true for all natural numbers $n \geq m_0$.
 \end{proposition}
 \begin{proof}
-    Let's define $Q(n) \iff (m_0 \leq m < n \implies P(m))$. We'll induct on $n$. Although it's not necessary, but I'd like to state the base case explicitly. For the base case $Q(m_0)$, $m_0 \leq m \leq m_0$ and $m\neq m_0$ by Definition~\ref{def:nat_order}. Since $m_0 \leq m$ and $m_0 \geq m$, we can conclude that $m_0\contreq m$ by Proposition~\ref{prop:order_antisymmetric}, what contradicts our antecedent of $m \neq m_0$. Thus, the inductive hypothesis is vacuous, and the implication holds for all cases. 
+    We'll induct on $n$. For the base case $m_0$: using Definition~\ref{def:nat_order}, $P(m)$ is true for $m_0 \leq m \leq m_0$ and $m\neq m_0$. If $m_0 \leq m$ and $m_0 \geq m$, then $m_0\contreq m$ by Proposition~\ref{prop:order_antisymmetric}, what contradicts the fact that $m \neq m_0$. That means that there are no such $m$ that satisfy $m_0 \leq m < m_0$. Thus, $P(m)$ is vacuously true for $m_0 \leq m < m_0$.
 
-    For the step case, suppose that $Q(n)$ and $Q(n) \implies P(n)$, then $P(n), \forall m_0\leq m \leq n < n\next$ and $m\neq n$. Which is equivalent to $m_0 \leq n < n\next, P(n)$ what is by definition $Q(n\next)$. Now we have closed the induction by Axiom~\ref{ax:induc}.
+    For the step case, suppose that $P(m)$ is true for $m_0 \leq m < n$, we need to prove $P(m)$ is true for $m_0 \leq m < n\next$. Since $P(m)$ holds for $m_0 \leq m < n$ and for $m=n$ (due to the given implication on $P(n)$), $P(m)$ holds for $m_0\leq m \leq n$. The latter term is equivalent to $m_0 \leq m < n\next$ by Proposition~\ref{prop:order_anext_geq_b}. That means $P(m)$ is true for $m_0 \leq m < n\next$. That closes the induction. Now we can conclude that $P(n)$ is true for all natural numbers $n \geq m_0$.
+\end{proof}
+
+\begin{proposition}
+    \textup{(Principle of backwards induction)}. Let $n$ be a natural number, and let $P(m)$ be a property pertaining to the natural numbers such that whenever $P(m\next)$ is true, then $P(m)$ is true. Suppose that $P(n)$ is true. Prove that $P(m)$ is true for all natural numbers $m \leq n$. 
+\end{proposition}
+\begin{proof}
+    Let's induct on $n$. If $n=0$, then $m\leq 0$. Combining with Lemma~\ref{lem:0leqb}, we can conclude that $m=0$ by Proposition~\ref{prop:order_antisymmetric}. Since $P(n)$ and $n=m$ are true, we proved $P(m)$ for $m \leq n$.
+
+    For the step case, suppose the following implication holds: $P(n) \implies P(m)$ is true for $m \leq n$. Now we need to prove $P(n\next) \implies P(m)$ is true for $m\leq n\next$. Let's assume that $P(n\next)$ is true, then $P(n)$ is also true by the ``backward'' property. If $P(n)$ is true, then $P(m)$ is true for $m\leq n$. Since $P(m)$ is true for $m \leq n$ and $m=n\next$ (by our assumption), then $P(m)$ is true for $m \leq n\next$. That proves the implication and closes the induction.
 \end{proof}
