@@ -306,15 +306,17 @@
 \end{proof}
 
 \begin{proposition}
+    \color{red}
     \textup{(Strong principle of induction)}. Let $m_0$ be a natural number, and let $P(m)$ be a property pertaining to an arbitrary natural number $m$. Suppose that for each $n \geq m_0$, we have the following implication: if $P(m)$ is true for all natural numbers $m_0 \leq m < n$, then $P(n)$ is also true (in particular, this means that $P (m_0)$ is true, since in this case the hypothesis is vacuous). Then we can conclude that $P(n)$ is true for all natural numbers $n \geq m_0$.
 \end{proposition}
 \begin{proof}
     We'll induct on $n$. For the base case $m_0$: using Definition~\ref{def:nat_order}, $P(m)$ is true for $m_0 \leq m \leq m_0$ and $m\neq m_0$. If $m_0 \leq m$ and $m_0 \geq m$, then $m_0\contreq m$ by Proposition~\ref{prop:order_antisymmetric}, what contradicts the fact that $m \neq m_0$. That means that there are no such $m$ that satisfy $m_0 \leq m < m_0$. Thus, $P(m)$ is vacuously true for $m_0 \leq m < m_0$.
 
-    For the step case, suppose that $P(m)$ is true for $m_0 \leq m < n$, we need to prove $P(m)$ is true for $m_0 \leq m < n\next$. Since $P(m)$ holds for $m_0 \leq m < n$ and for $m=n$ (due to the given implication on $P(n)$), $P(m)$ holds for $m_0\leq m \leq n$. The latter term is equivalent to $m_0 \leq m < n\next$ by Proposition~\ref{prop:order_anext_geq_b}. That means $P(m)$ is true for $m_0 \leq m < n\next$. That closes the induction. Now we can conclude that $P(n)$ is true for all natural numbers $n \geq m_0$.
+    For the step case, suppose $P(m)$ for $m_0 \leq m < n \implies P(n)$, we need to prove $P(m)$ for $m_0 \leq m < n\next \implies P(n\next)$. Since $P(m)$ holds for $m_0 \leq m < n$ and for $m=n$ (due to the given implication on $P(n)$), $P(m)$ holds for $m_0\leq m \leq n$. The latter term is equivalent to $m_0 \leq m < n\next$ by Proposition~\ref{prop:order_anext_geq_b}. \color{red}{That means $P(m)$ is true for $m_0 \leq m < n\next$, and it means $P(n\next)$ is true. That closes the induction.}
 \end{proof}
 
 \begin{proposition}
+    \color{red}
     \textup{(Principle of backwards induction)}. Let $n$ be a natural number, and let $P(m)$ be a property pertaining to the natural numbers such that whenever $P(m\next)$ is true, then $P(m)$ is true. Suppose that $P(n)$ is true. Prove that $P(m)$ is true for all natural numbers $m \leq n$. 
 \end{proposition}
 \begin{proof}
