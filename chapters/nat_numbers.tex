@@ -312,7 +312,7 @@
 \begin{proof}
     We'll induct on $n$. For the base case $m_0$: using Definition~\ref{def:nat_order}, $P(m)$ is true for $m_0 \leq m \leq m_0$ and $m\neq m_0$. If $m_0 \leq m$ and $m_0 \geq m$, then $m_0\contreq m$ by Proposition~\ref{prop:order_antisymmetric}, what contradicts the fact that $m \neq m_0$. That means that there are no such $m$ that satisfy $m_0 \leq m < m_0$. Thus, $P(m)$ is vacuously true for $m_0 \leq m < m_0$.
 
-    For the step case, suppose $P(m)$ for $m_0 \leq m < n \implies P(n)$, we need to prove $P(m)$ for $m_0 \leq m < n\next \implies P(n\next)$. Since $P(m)$ holds for $m_0 \leq m < n$ and for $m=n$ (due to the given implication on $P(n)$), $P(m)$ holds for $m_0\leq m \leq n$. The latter term is equivalent to $m_0 \leq m < n\next$ by Proposition~\ref{prop:order_anext_geq_b}. \color{red}{That means $P(m)$ is true for $m_0 \leq m < n\next$, and it means $P(n\next)$ is true. That closes the induction.}
+    For the step case, suppose $P(m)$ for $m_0 \leq m < n \implies P(n)$, we need to prove $P(m)$ for $m_0 \leq m < n\next \implies P(n\next)$. Since $P(m)$ holds for $m_0 \leq m < n$ and for $m=n$ (due to the given implication on $P(n)$), $P(m)$ holds for $m_0\leq m \leq n$. The latter term is equivalent to $m_0 \leq m < n\next$ by Proposition~\ref{prop:order_anext_geq_b}.~\color{red}{That means $P(m)$ is true for $m_0 \leq m < n\next$, and it means $P(n\next)$ is true. That closes the induction.}
 \end{proof}
 
 \begin{proposition}
@@ -322,5 +322,21 @@
 \begin{proof}
     Let's induct on $n$. If $n=0$, then $m\leq 0$. Combining with Lemma~\ref{lem:0leqb}, we can conclude that $m=0$ by Proposition~\ref{prop:order_antisymmetric}. Since $P(n)$ and $n=m$ are true, we proved $P(m)$ for $m \leq n$.
 
-    For the step case, suppose the following implication holds: $P(n) \implies P(m)$ is true for $m \leq n$. Now we need to prove $P(n\next) \implies P(m)$ is true for $m\leq n\next$. Let's assume that $P(n\next)$ is true, then $P(n)$ is also true by the ``backward'' property. If $P(n)$ is true, then $P(m)$ is true for $m\leq n$. Since $P(m)$ is true for $m \leq n$ and $m=n\next$ (by our assumption), then $P(m)$ is true for $m \leq n\next$. That proves the implication and closes the induction.
+    For the step case, suppose the following implication holds: $P(n) \implies P(m)$ is true for $m \leq n$. Now we need to prove $P(n\next) \implies P(m)$ is true for $m\leq n\next$. Let's assume that $P(n\next)$ is true, then $P(n)$ is also true by the ``backward'' property. If $P(n)$ is true, then $P(m)$ is true for $m\leq n$. Since $P(m)$ is true for $m \leq n$ and for $m=n\next$ (by our assumption), then $P(m)$ is true for $m \leq n\next$. That proves the implication and closes the induction.
 \end{proof}
+
+\begin{proposition}
+    \color{red}
+    \textup{(Principle of induction starting from the base case $n$)}. Let $n$ be a natural number, and let $P(m)$ be a property pertaining to the natural numbers such that whenever $P(m)$ is true, $P(m\next)$ is true. Show that if $P(n)$ is true, then $P(m)$ is true for all $m\geq n$.
+\end{proposition}
+
+\begin{proof}
+    Since $m\geq n$, then we can represent $m=n+k$. So, let's induct on $k$. For the base case $k=0$, $m=n$. Since $P(n)$ is true and $m=n$, then $P(m)$ is also true. 
+    
+    For the step case, we assume if $P(n)$ is true, then $P(n+k)$ is true for all $n+k\geq n$. Now we need to prove that the same holds for $P(n+(k\next))$. Given the fact that $m=n+k$, $n+(k\next) = (n+k)\next$ by Definition~\ref{def:sum}, and the property assumption, if $P(m)$ is true, then $P(m\next)$ is also true, we can conclude that $P(n+(k\next))$ is true. That closes the induction.
+\end{proof}
+
+\section{Multiplication}
+\begin{definition}
+     \textup{(Multiplication of natural numbers)}. Let $m$ be a natural number. To multiply zero to $m$, we define $0 \times m := 0$. Now suppose inductively that we have defined how to multiply $n$ to $m$. Then we can multiply $n\next$ to $m$ by defining $(n\next) \times m :=(n \times m) + m$.
+\end{definition}
