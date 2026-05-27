@@ -117,7 +117,7 @@
         & =((n+m)\next)\next &&\text{Inductive Hypothesis}\\
         & = ((n\next)+m)\next &&\text{Definition~\ref{def:sum}}
     \end{align*}
-    What closes the induction.
+    what closes the induction.
 \end{proof}
 
 \begin{subsequence}
@@ -154,7 +154,7 @@
         &=(m+n)\next && \text{Inductive Hypothesis}\\
         &=(m+(n\next)) && \text{Lemma~\ref{lem:suc_commutative}}
     \end{align*}
-    What closes the induction.
+    what closes the induction.
 \end{proof}
 
 \begin{proposition}
@@ -195,7 +195,7 @@
     \textup{(Positive natural numbers)}. A natural number $n$ is said to be positive iff it is not equal to $0$.\label{def:pos_nat} 
 \end{definition}
 \begin{proposition}
-     If $a$ is positive and $b$ is a natural number, then $a + b$ is positive.
+     If $a$ is positive and $b$ is a natural number, then $a + b$ is positive.\label{prop:pos_plus_nat_is_pos}
 \end{proposition}
 \begin{proof}
     Let's induct on $b$. For the base case, $a+0=a$ by Definition~\ref{def:sum}. The result is positive by the propositional assumption. For the step case, we need to prove $a+(b\next)$ is positive, assuming $a+b$ is positive. $a+(b\next)=(a+b)\next$ by Lemma~\ref{lem:suc_commutative}. Given Axiom~\ref{ax:zero_no_suc}, $(a+b)\next$ is positive as well, what closes the induction.
@@ -338,5 +338,84 @@
 
 \section{Multiplication}
 \begin{definition}
-     \textup{(Multiplication of natural numbers)}. Let $m$ be a natural number. To multiply zero to $m$, we define $0 \times m := 0$. Now suppose inductively that we have defined how to multiply $n$ to $m$. Then we can multiply $n\next$ to $m$ by defining $(n\next) \times m :=(n \times m) + m$.
+     \textup{(Multiplication of natural numbers)}. Let $m$ be a natural number. To multiply zero to $m$, we define $0 \times m := 0$. Now suppose inductively that we have defined how to multiply $n$ to $m$. Then we can multiply $n\next$ to $m$ by defining $(n\next) \times m :=(n \times m) + m$.\label{def:nat_mul}
 \end{definition}
+
+\begin{subsequence}
+    \begin{proposition}
+        Product of two natural numbers is a natural number.\label{prop:mul_nat_is_nat}
+    \end{proposition}
+    \begin{proof}
+        Let's induct on $n$. The base case would be $n:= 0$. By definition~\ref{def:nat_mul}, $0\times m := 0$ which is a natural number. Now suppose $n \times m$ is a natural number. Then $\left(n\next\right) \times m := \left(n \times m\right) + m$ by Definition~\ref{def:nat_mul}. Since $\left(n \times m\right)$ is a natural number by the inductive hypothesis and $m$ is a natural number, the sum of two natural numbers is also a natural number by Proposition~\ref{prop:sum_nat_is_nat}. That closes the induction.
+    \end{proof}
+\end{subsequence}
+\forcenumber{3}
+\begin{subsequence}
+    \begin{lemma}
+        For any natural number $n$, $n \times 0 = 0$.\label{lem:nat_mul_0_commutative}     
+    \end{lemma}
+    \begin{proof}
+        Let's induct on $n$. For the base case $n:=0$, $n \times 0 = 0 \times 0 := 0$ by Definition~\ref{def:nat_mul}. Now for the step case, let's assume that $n \times 0 = 0$. Then 
+        \begin{align*}
+            \left(n\next\right) \times 0:&= \left(n \times 0\right) + 0 && \text{Definition~\ref{def:nat_mul}}\\
+            &=0 + 0 && \text{Inductive Hypothesis}\\
+            &=0 &&\text{Definition~\ref{def:sum}}
+        \end{align*}
+        what closes the induction.
+    \end{proof}
+    \begin{lemma}
+        For any natural numbers $n,m$, $m \times (n\next) = (m \times n) + m$\label{lem:nat_suc_mul_commutative}.
+    \end{lemma}
+    \begin{proof}
+        Let's induct on $m$. For the base case, 
+        \begin{align*}
+            m \times (n\next) &= 0 \times (n\next)\\
+            &= 0\\
+            &= (0 \times n) + 0\\
+        \end{align*}
+        For the step case, we assume that $m \times (n\next) = (m\times n) + m$. Now we need to prove that $(m\next) \times (n\next) = ((m\next)\times n) + (m\next)$.
+        \begin{align*}
+            (m\next) \times (n\next) &= (m\times (n\next)) + (n\next) && \text{Definition~\ref{def:nat_mul}}\\
+            &=((m \times n) + m) + (n\next) && \text{Inductive Hypothesis}\\
+            &= (m \times n) + (m + (n\next)) && \text{Proposition~\ref{prop:sum_associative}}\\
+            &= (m \times n) + ((n\next) + m) && \text{Proposition~\ref{prop:sum_commutative}}\\
+            &= (m \times n) + n + (m\next) && \text{Proposition~\ref{lem:suc_commutative}}\\
+            &= ((m \times n) + n) + (m\next) && \text{Proposition~\ref{prop:sum_associative}}\\
+            &= ((m\next) \times n) + (m\next) && \text{Definition~\ref{def:nat_mul}}
+        \end{align*}
+        that closes the induction.
+    \end{proof}
+    \begin{lemma}
+        \textup{(Multiplication is commutative)}. Let $n, m$ be natural numbers. Then $n\times m = m \times n$.
+    \end{lemma}
+    \begin{proof}
+        Let's induct on $n$. For the base case $n:=0$, 
+        \begin{align*}
+            n\times m &= 0 \times m\\
+            & := 0 &&\text{Definition~\ref{def:nat_mul}}\\
+            &= m \times 0&&\text{Lemma~\ref{lem:nat_mul_0_commutative}}
+        \end{align*}
+        For the step case, let's assume that $n\times m = m \times n$. Then we need to prove that $(n\next) \times m = m \times (n\next)$
+        \begin{align*}
+           (n\next) \times m :&= (n\times m) + m &&\text{Definition~\ref{def:nat_mul}}\\
+           &= (m\times n) + m && \text{Inductive Hypothesis}\\
+           &= m \times (n\next) && \text{Lemma~\ref{lem:nat_suc_mul_commutative}}
+        \end{align*}
+        what closes the induction.
+    \end{proof}
+\end{subsequence}
+\begin{lemma}
+    \textup{(Natural numbers have no zero divisors)}. Let $n, m$ be natural numbers. Then $n \times m = 0$ if and only if at least one of $n, m$ is equal to zero. In particular, if $n$ and $m$ are both positive, then $nm$ is also positive.
+\end{lemma}
+\begin{proof}
+    We start with the left to right case. If $n \times m = 0$, then we need to prove that either $n$ or $m$ is zero. Let's assume than neither $n$ nor $m$ is zero (i.e. we can use $n\next$ and $m\next$ instead). Then $(n\next) \times (m\next) = (n\times (m\next)) + m\next$ (or $(m\next) + (n\next) = (m \times (n\next)) + (n\next)$) by Definition~\ref{def:nat_mul}. We can conclude that in both cases, adding a natural number with a positive natural number will result in positive number by Proposition~\ref{prop:pos_plus_nat_is_pos}. That contradicts to $(n\next) \times (m\next)\contreq 0$. Thus, either $n$ or $m$ must be zero.
+
+    The right to left case: if either $n$ or $m$ is zero, then $n\times m = 0 \times m := 0$ by Definition~\ref{def:nat_mul} or $n \times m = n \times 0 = 0 \times n = 0$ by Lemma~\ref{lem:nat_mul_0_commutative} and Definition~\ref{def:nat_mul}. What closes both directions. 
+    
+    If both, $n$ and $m$, are positive natural numbers (i.e.~$n\next$ and $m\next$), then $(n\next)\times(m\next)$ is also positive as shown above.
+\end{proof}
+
+\begin{proposition}
+     \textup{(Distributive law).} For any natural numbers $a, b, c$, we have $a(b + c) = ab + ac$ and $(b + c)a = ba + ca$.
+\end{proposition}
+
