@@ -386,7 +386,7 @@
         that closes the induction.
     \end{proof}
     \begin{lemma}
-        \textup{(Multiplication is commutative)}. Let $n, m$ be natural numbers. Then $n\times m = m \times n$.
+        \textup{(Multiplication is commutative)}. Let $n, m$ be natural numbers. Then $n\times m = m \times n$.\label{lem:nat_mul_commutative}
     \end{lemma}
     \begin{proof}
         Let's induct on $n$. For the base case $n:=0$, 
@@ -410,7 +410,7 @@
 \begin{proof}
     We start with the left to right case. If $n \times m = 0$, then we need to prove that either $n$ or $m$ is zero. Let's assume than neither $n$ nor $m$ is zero (i.e. we can use $n\next$ and $m\next$ instead). Then $(n\next) \times (m\next) = (n\times (m\next)) + m\next$ (or $(m\next) + (n\next) = (m \times (n\next)) + (n\next)$) by Definition~\ref{def:nat_mul}. We can conclude that in both cases, adding a natural number with a positive natural number will result in positive number by Proposition~\ref{prop:pos_plus_nat_is_pos}. That contradicts to $(n\next) \times (m\next)\contreq 0$. Thus, either $n$ or $m$ must be zero.
 
-    The right to left case: if either $n$ or $m$ is zero, then $n\times m = 0 \times m := 0$ by Definition~\ref{def:nat_mul} or $n \times m = n \times 0 = 0 \times n = 0$ by Lemma~\ref{lem:nat_mul_0_commutative} and Definition~\ref{def:nat_mul}. What closes both directions. 
+    The right to left case: if either $n$ or $m$ is zero, then $n\times m = 0 \times m := 0$ by Definition~\ref{def:nat_mul} or $n \times m = n \times 0 = 0 \times n = 0$ by Lemma~\ref{lem:nat_mul_0_commutative}. What closes both directions. 
     
     If both, $n$ and $m$, are positive natural numbers (i.e.~$n\next$ and $m\next$), then $(n\next)\times(m\next)$ is also positive as shown above.
 \end{proof}
@@ -418,4 +418,35 @@
 \begin{proposition}
      \textup{(Distributive law).} For any natural numbers $a, b, c$, we have $a(b + c) = ab + ac$ and $(b + c)a = ba + ca$.
 \end{proposition}
+
+\begin{proof}
+    The case $a(b + c) = ab + ac$. Let's induct on $a$. The base case,
+    \begin{align*}
+        0(b+c) &= 0b+0c \\
+        0&=0 + 0 && \text{Definition~\ref{def:nat_mul}}\\
+        0&=0 && \text{Definition~\ref{def:sum}}
+    \end{align*}
+    The step case, we assume that $a(b+c)=ab+ac$ to prove $a\next(b+c) = (a\next)b + (a\next)c$
+    \begin{align*}
+        a\next(b+c)&=a(b+c) + (b+c)&&\text{Definition~\ref{def:nat_mul}}\\
+        &= ab+ac + b + c&& \text{Inductive Hypothesis}\\
+        &= ab + b + ac + c && \text{Propositions~\ref{prop:sum_commutative} and~\ref{prop:sum_associative}}\\
+        &= (a\next)b + (a\next)c && \text{Definition~\ref{def:nat_mul}}
+    \end{align*}
+    what closes the induction for the former case.
+    The case $(b + c)a = ba + ca$. Again, inducting on $a$. For the base case:
+    \begin{align*}
+        (b+c)0 &= b0 +c0 \\
+        0 &= 0 + 0 && \text{Lemma~\ref{lem:nat_mul_0_commutative}}\\
+        0&=0 && \text{Lemma~\ref{lem:sum_zero_commutative}}
+    \end{align*}
+    For the step case, assuming that $(b+c)a = ba + ca$, we need to prove $(b+c)(a\next) = b(a\next)+c(a\next)$
+    \begin{align*}
+        (b+c)(a\next) &= (b+c)a+ (b+c) && \text{Lemma~\ref{lem:nat_suc_mul_commutative}}\\
+        &= ba + ca + b + c && \text{Inductive Hypothesis}\\
+        & = ba + b + ca + c && \text{Proposition~\ref{prop:sum_commutative} and~\ref{prop:sum_associative}}\\
+        & = b(a\next) + c(a\next) && \text{Lemma~\ref{lem:nat_suc_mul_commutative}}
+    \end{align*}
+    what closes the induction for the latter case.
+\end{proof}
 
