@@ -408,7 +408,7 @@
     \textup{(Natural numbers have no zero divisors)}. Let $n, m$ be natural numbers. Then $n \times m = 0$ if and only if at least one of $n, m$ is equal to zero. In particular, if $n$ and $m$ are both positive, then $nm$ is also positive.
 \end{lemma}
 \begin{proof}
-    We start with the left to right case. If $n \times m = 0$, then we need to prove that either $n$ or $m$ is zero. Let's assume than neither $n$ nor $m$ is zero (i.e. we can use $n\next$ and $m\next$ instead). Then $(n\next) \times (m\next) = (n\times (m\next)) + m\next$ (or $(m\next) + (n\next) = (m \times (n\next)) + (n\next)$) by Definition~\ref{def:nat_mul}. We can conclude that in both cases, adding a natural number with a positive natural number will result in positive number by Proposition~\ref{prop:pos_plus_nat_is_pos}. That contradicts to $(n\next) \times (m\next)\contreq 0$. Thus, either $n$ or $m$ must be zero.
+    We start with the left to right case. If $n \times m = 0$, then we need to prove that either $n$ or $m$ is zero. Let's assume than neither $n$ nor $m$ is zero (i.e.\@ we can use $n\next$ and $m\next$ instead). Then $(n\next) \times (m\next) = (n\times (m\next)) + m\next$ (or $(m\next) + (n\next) = (m \times (n\next)) + (n\next)$) by Definition~\ref{def:nat_mul}. We can conclude that in both cases, adding a natural number with a positive natural number will result in positive number by Proposition~\ref{prop:pos_plus_nat_is_pos}. That contradicts to $(n\next) \times (m\next)\contreq 0$. Thus, either $n$ or $m$ must be zero.
 
     The right to left case: if either $n$ or $m$ is zero, then $n\times m = 0 \times m := 0$ by Definition~\ref{def:nat_mul} or $n \times m = n \times 0 = 0 \times n = 0$ by Lemma~\ref{lem:nat_mul_0_commutative}. What closes both directions. 
     
@@ -416,7 +416,7 @@
 \end{proof}
 
 \begin{proposition}
-     \textup{(Distributive law).} For any natural numbers $a, b, c$, we have $a(b + c) = ab + ac$ and $(b + c)a = ba + ca$.
+     \textup{(Distributive law).} For any natural numbers $a, b, c$, we have $a(b + c) = ab + ac$ and $(b + c)a = ba + ca$.\label{prop:mul_distributive}
 \end{proposition}
 
 \begin{proof}
@@ -450,3 +450,40 @@
     what closes the induction for the latter case.
 \end{proof}
 
+\begin{proposition}
+    \textup{(Multiplication is associative).} For any natural numbers $a,b,c$ we have $(a \times b) \times c = a \times (b\times c)$.
+    \end{proposition}
+\begin{proof}
+    Let's induct on $a$. The base case:
+    \begin{align*}
+        (0\times b) \times c &= 0 \times (b \times c) \\
+        0 \times c &= 0 && \text{By Definition~\ref{def:nat_mul} and Proposition~\ref{prop:mul_nat_is_nat}}\\
+        0 &= 0 && \text{By Definition~\ref{def:nat_mul}}
+    \end{align*}
+    For the step case, we need to prove that $((a\next)\times b) \times c = (a\next) \times (b\times c)$, given $(a\times b)\times c = a \times (b\times c)$:
+    \begin{align*}
+        ((a\next)\times b) \times c &= ((a \times b) + b) \times c && \text{By Definition~\ref{def:nat_mul}}\\
+        &= (a \times b) \times c + (b \times c) && \text{By Proposition~\ref{prop:mul_distributive}}\\ 
+        &= a\times (b \times c) + (b \times c) && \text{By the Inductive Hypothesis}\\
+        &= (a\next)\times(b\times c) && \text{By Definition~\ref{def:nat_mul}}
+    \end{align*}
+    what closes the induction.
+\end{proof}
+\begin{proposition}
+    \textup{(Multiplication preserves the order).} If $a, b$ are natural numbers such that $a < b$, and $c$ is positive, then $ac<bc$.
+\end{proposition}
+\begin{proof}
+    Let's induct on $c$. Since $c$ is positive, we can denote it as $c\next$. The base case: 
+    \begin{align*}
+        a(c\next) &< b(c\next)\\
+        a(0\next) &< b(0\next) \\
+        (a\times 0) + a &<(b\times 0) + b && \text{By Definition~\ref{def:nat_mul} and Lemma~\ref{lem:nat_mul_commutative}}\\
+        a &< b && \text{By Definitions~\ref{def:nat_mul} and~\ref{def:sum}}
+    \end{align*}
+    For the step case, given $a(c\next)<b(c\next)$, we need to prove that $a((c\next)\next)<b((c\next) \next)$:
+    \begin{align*}
+        a(c\next)&<b(c\next) && \text{By the Inductive Hypothesis}\\
+        a(c\next) + c\next &< b(c\next) + c\next &&  \text{By Proposition~\ref{prop:sum_preserve_order}}\\
+        a((c\next)\next)&<b((c\next) \next) && \text{By Lemma~\ref{lem:nat_mul_commutative} and Definition\ref{def:nat_mul}}
+    \end{align*}
+\end{proof}
