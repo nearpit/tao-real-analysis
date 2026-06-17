@@ -476,7 +476,8 @@
     Since $c$ is positive, we can denote it as $\bar{c}\next$. Let's induct on $\bar{c}$. The base case: 
     \begin{align*}
         a &< b\\
-        (a\times 0) + a &<(b\times 0) + b && \text{By Definitions~\ref{def:nat_mul} and~\ref{def:sum}}\\
+        0 + a &<0 + b && \text{By Definition~\ref{def:sum} and Proposition~\ref{prop:sum_preserve_order}}\\
+        (a\times 0) + a &<(b\times 0) + b && \text{By Definition~\ref{def:nat_mul}}\\
         a(0\next) &< b(0\next) && \text{By Definition~\ref{def:nat_mul} and Lemma~\ref{lem:nat_mul_commutative}}\\
         a(\bar{c}\next) &< b(\bar{c}\next)
     \end{align*}
