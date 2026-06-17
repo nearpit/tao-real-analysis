@@ -473,16 +473,17 @@
     \textup{(Multiplication preserves the order).} If $a, b$ are natural numbers such that $a < b$, and $c$ is positive, then $ac<bc$.
 \end{proposition}
 \begin{proof}
-    Let's induct on $c$. Since $c$ is positive, we can denote it as $c\next$. The base case: 
+    Since $c$ is positive, we can denote it as $\bar{c}\next$. Let's induct on $\bar{c}$. The base case: 
     \begin{align*}
-        a(0\next) &< b(0\next) \\
-        (a\times 0) + a &<(b\times 0) + b && \text{By Definition~\ref{def:nat_mul} and Lemma~\ref{lem:nat_mul_commutative}}\\
-        a &< b && \text{By Definitions~\ref{def:nat_mul} and~\ref{def:sum}}
+        a &< b\\
+        (a\times 0) + a &<(b\times 0) + b && \text{By Definitions~\ref{def:nat_mul} and~\ref{def:sum}}\\
+        a(0\next) &< b(0\next) && \text{By Definition~\ref{def:nat_mul} and Lemma~\ref{lem:nat_mul_commutative}}\\
+        a(\bar{c}\next) &< b(\bar{c}\next)
     \end{align*}
-    For the step case, given $a(c\next)<b(c\next)$, we need to prove that $a((c\next)\next)<b((c\next) \next)$:
+    For the step case, given $a(\bar{c}\next)<b(\bar{c}\next)$, we need to prove that $a((\bar{c}\next)\next)<b((\bar{c}\next) \next)$:
     \begin{align*}
-        a(c\next)&<b(c\next) && \text{By the Inductive Hypothesis}\\
-        a(c\next) + c\next &< b(c\next) + c\next &&  \text{By Proposition~\ref{prop:sum_preserve_order}}\\
-        a((c\next)\next)&<b((c\next) \next) && \text{By Lemma~\ref{lem:nat_mul_commutative} and Definition\ref{def:nat_mul}}
+        a(\bar{c}\next)&<b(\bar{c}\next) && \text{By the Inductive Hypothesis}\\
+        a(\bar{c}\next) + \bar{c}\next &< b(\bar{c}\next) + \bar{c}\next &&  \text{By Proposition~\ref{prop:sum_preserve_order}}\\
+        a((\bar{c}\next)\next)&<b((\bar{c}\next) \next) && \text{By Lemma~\ref{lem:nat_mul_commutative} and Definition\ref{def:nat_mul}}
     \end{align*}
 \end{proof}
