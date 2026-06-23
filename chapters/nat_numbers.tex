@@ -297,7 +297,7 @@
     
     
 \begin{proposition}
-    \textup{(Trichotomy of order for natural numbers)}. Let $a$ and $b$ be natural numbers. Then exactly one of the following statements is true: $a<b, a=b, a>b$.         
+    \textup{(Trichotomy of order for natural numbers)}. Let $a$ and $b$ be natural numbers. Then exactly one of the following statements is true: $a<b, a=b, a>b$\label{prop:nat_num_trichotomy}.         
 \end{proposition}
 \begin{proof}
     Let's start that \textbf{no more than one} statement holds at a time. If $a=b$, then neither $a < b$ nor $a > b$ holds by Definition~\ref{def:nat_order}. If $a>b$ and $a<b$, then by Definition~\ref{def:nat_order}, $a\geq b$, $a \leq b$ and $a\neq b$. If $a \geq $b and $a \leq b$, then $a\contreq b$ using Proposition~\ref{prop:order_antisymmetric}, what contradicts the antecedent. Thus, no more than one statement holds at a time. 
@@ -470,7 +470,7 @@
     what closes the induction.
 \end{proof}
 \begin{proposition}
-    \textup{(Multiplication preserves the order).} If $a, b$ are natural numbers such that $a < b$, and $c$ is positive, then $ac<bc$.
+    \textup{(Multiplication preserves the order).} If $a, b$ are natural numbers such that $a < b$, and $c$ is positive, then $ac<bc$\label{prop:nat_mul_preserve_order}.
 \end{proposition}
 \begin{proof}
     Since $c$ is positive, we can denote it as $\bar{c}\next$. Let's induct on $\bar{c}$. The base case: 
@@ -488,3 +488,11 @@
         a((\bar{c}\next)\next)&<b((\bar{c}\next) \next) && \text{By Lemma~\ref{lem:nat_mul_commutative} and Definition\ref{def:nat_mul}}
     \end{align*}
 \end{proof}
+
+\begin{corollary}
+    \textup{(Cancellation law).} Let $a, b, c$ be a natural numbers such that $ac=bc$ and $c\neq 0$. Then $a=b$. 
+\end{corollary}
+\begin{proof}
+Let's apply the contrapositive property of implication: if $a\neq b$ or, in other words, $a>b$ exclusively or $a<b$, then $ac\neq bc$ or $c=0$. If $c\neq 0$ and $a>b$, then $ac\lessgtr bc$ by Proposition~\ref{prop:nat_mul_preserve_order}, which means $ac\neq bc$ by Proposition~\ref{prop:nat_num_trichotomy}. Since Proposition~\ref{prop:nat_num_trichotomy} requires $c=0$, we need to consider $c=0$. If $c = 0$, then $c = 0$ trivially satisfies the conclusion.
+\end{proof}
+
