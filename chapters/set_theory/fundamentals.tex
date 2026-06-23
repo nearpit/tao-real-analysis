@@ -1,1 +1,41 @@
 \section{Fundamentals}
+\begin{axiom}
+    \textup{(Sets are objects.)} If $A$ is a set, then $A$ is also an object. In particular, given two sets $A$ and $B$, it is meaningful to ask whether $A$ is also an element of $B$. 
+\end{axiom}
+\begin{axiom}
+    \textup{(Equality of sets).} Two sets $A$ and $B$ are equal, $A=B$, iff every element of $A$ is an element of $B$ and vice versa. To put it another way, $A=B$ if and only if every element $x$ of $A$ belongs also to $B$, and every element $y$ of $B$ belongs also to $A$.\label{ax:sets_equality}
+\end{axiom}
+ \begin{axiom}
+    \textup{(Empty set).} There exists a set $\emptyset$ or $\{\}$, known as the empty set, which contains no elements, i.e.\@ for every object $x$ we have $x \notin \emptyset$.\label{ax:emptyset}
+ \end{axiom}
+
+ \begin{proposition}
+    There is exactly one empty set $\emptyset$.
+ \end{proposition}
+ \begin{proof}
+    Let us assume that $\emptyset^\prime$ is also an empty set. Based on Axiom~\ref{ax:emptyset}, since no elements are in both sets, then all elements (in particular, the lack of them), that are in $\emptyset$, are also in $\emptyset^\prime$ and vice versa. That makes $\emptyset^\prime = \emptyset$. 
+ \end{proof}
+\forcenumber{5}
+\begin{lemma}
+    \textup{(Single choice).} Let $A$ be a non-empty set. Then there exists an object $x$ such that $x \in A$.
+\end{lemma}
+\begin{proof}
+    Let us prove by contradiction. If $A$ is a non-empty set, then no $x$ exists such that $x\in A$. Or in other words, for every object $x$ we have $x\notin A$. But this is the empty set by Axiom~\ref{ax:emptyset}.
+\end{proof}
+\begin{axiom}
+    \textup{(Singleton sets and pair sets).} If $a$ is an object, then there exists a set $\{a\}$ whose only element is $a$, i.e., for every object $y$, we have $y \in \{a\}$ if and only if $y=a$; we refer to ${a}$ as the singleton set whose element is $a$. Furthermore, if $a$ and $b$ are objects, then there exists a set $\{a, b\}$ whose only elements are $a$ and $b$; i.e., for every object $y$, we have $y\in \{a, b\}$ if and only if $y=a$ or $y=b$; we refer to this set as the pair set formed by $a$ and $b$.\label{ax:singleton_pair_sets}
+\end{axiom}
+\begin{proposition}
+    There is only one singleton set for each object $a$.
+\end{proposition}
+\begin{proof}
+    Let's assume that there's another singleton set $a^\prime$ for $a$ different from $a$ which is a singleton set of $a$. Since only $a \in a^\prime$ by Axiom~\ref{ax:singleton_pair_sets}, then for all $x\in a$ it is also $x\in a^\prime$. What makes $a=a^\prime$ by Axiom~\ref{ax:sets_equality} what contradicts our initial assumption.
+\end{proof}
+
+\begin{proposition}
+   Given two objects $a$ and $b$, there is only one pair set formed by $a$ and $b$.
+\end{proposition}
+
+% \begin{proof}
+%     Let's assume that there's another pair set $AB^\prime$ that is formed by $a$ and $b$ and is different from the original pair set $AB$. By Axiom~\ref{ax:singleton_pair_sets}, 
+% \end{proof}
