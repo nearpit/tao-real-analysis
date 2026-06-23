@@ -1,0 +1,203 @@
+
+\section{Multiplication}
+\begin{definition}
+     \textup{(Multiplication of natural numbers)}. Let $m$ be a natural number. To multiply zero to $m$, we define $0 \times m := 0$. Now suppose inductively that we have defined how to multiply $n$ to $m$. Then we can multiply $n\next$ to $m$ by defining $(n\next) \times m :=(n \times m) + m$.\label{def:nat_mul}
+\end{definition}
+
+\begin{subsequence}
+    \begin{proposition}
+        Product of two natural numbers is a natural number.\label{prop:mul_nat_is_nat}
+    \end{proposition}
+    \begin{proof}
+        Let's induct on $n$. The base case would be $n:= 0$. By definition~\ref{def:nat_mul}, $0\times m := 0$ which is a natural number. Now suppose $n \times m$ is a natural number. Then $\left(n\next\right) \times m := \left(n \times m\right) + m$ by Definition~\ref{def:nat_mul}. Since $\left(n \times m\right)$ is a natural number by the inductive hypothesis and $m$ is a natural number, the sum of two natural numbers is also a natural number by Proposition~\ref{prop:sum_nat_is_nat}. That closes the induction.
+    \end{proof}
+    \begin{lemma}
+        $1\times n= n$ for all natural numbers.\label{lem:nat_mul_1_identity} 
+    \end{lemma}
+    \begin{proof}
+        \begin{align*}
+            1\times n &= (0\next) n &&  \text{By Definition~\ref{def:nat_num_repres}}\\
+            &= (0 \times n) + n && \text{By Definition~\ref{def:nat_mul}}\\
+            &= 0 + n && \text{By Definition~\ref{def:nat_mul}}\\
+            &= n && \text{By Definition~\ref{def:sum}}
+        \end{align*}
+    \end{proof}
+\end{subsequence}
+\forcenumber{3}
+\begin{subsequence}
+    \begin{lemma}
+        For any natural number $n$, $n \times 0 = 0$.\label{lem:nat_mul_0_commutative}     
+    \end{lemma}
+    \begin{proof}
+        Let's induct on $n$. For the base case $n:=0$, $n \times 0 = 0 \times 0 := 0$ by Definition~\ref{def:nat_mul}. Now for the step case, let's assume that $n \times 0 = 0$. Then 
+        \begin{align*}
+            \left(n\next\right) \times 0:&= \left(n \times 0\right) + 0 && \text{Definition~\ref{def:nat_mul}}\\
+            &=0 + 0 && \text{Inductive Hypothesis}\\
+            &=0 &&\text{Definition~\ref{def:sum}}
+        \end{align*}
+        what closes the induction.
+    \end{proof}
+    \begin{lemma}
+        For any natural numbers $n,m$, $m \times (n\next) = (m \times n) + m$\label{lem:nat_suc_mul_commutative}.
+    \end{lemma}
+    \begin{proof}
+        Let's induct on $m$. For the base case, 
+        \begin{align*}
+            m \times (n\next) &= 0 \times (n\next)\\
+            &= 0\\
+            &= (0 \times n) + 0
+        \end{align*}
+        For the step case, we assume that $m \times (n\next) = (m\times n) + m$. Now we need to prove that $(m\next) \times (n\next) = ((m\next)\times n) + (m\next)$.
+        \begin{align*}
+            (m\next) \times (n\next) &= (m\times (n\next)) + (n\next) && \text{Definition~\ref{def:nat_mul}}\\
+            &=((m \times n) + m) + (n\next) && \text{Inductive Hypothesis}\\
+            &= (m \times n) + (m + (n\next)) && \text{Proposition~\ref{prop:sum_associative}}\\
+            &= (m \times n) + ((n\next) + m) && \text{Proposition~\ref{prop:sum_commutative}}\\
+            &= (m \times n) + n + (m\next) && \text{Proposition~\ref{lem:suc_commutative}}\\
+            &= ((m \times n) + n) + (m\next) && \text{Proposition~\ref{prop:sum_associative}}\\
+            &= ((m\next) \times n) + (m\next) && \text{Definition~\ref{def:nat_mul}}
+        \end{align*}
+        that closes the induction.
+    \end{proof}
+    \begin{lemma}
+        \textup{(Multiplication is commutative)}. Let $n, m$ be natural numbers. Then $n\times m = m \times n$.\label{lem:nat_mul_commutative}
+    \end{lemma}
+    \begin{proof}
+        Let's induct on $n$. For the base case $n:=0$, 
+        \begin{align*}
+            n\times m &= 0 \times m\\
+            & := 0 &&\text{Definition~\ref{def:nat_mul}}\\
+            &= m \times 0&&\text{Lemma~\ref{lem:nat_mul_0_commutative}}
+        \end{align*}
+        For the step case, let's assume that $n\times m = m \times n$. Then we need to prove that $(n\next) \times m = m \times (n\next)$
+        \begin{align*}
+           (n\next) \times m :&= (n\times m) + m &&\text{Definition~\ref{def:nat_mul}}\\
+           &= (m\times n) + m && \text{Inductive Hypothesis}\\
+           &= m \times (n\next) && \text{Lemma~\ref{lem:nat_suc_mul_commutative}}
+        \end{align*}
+        what closes the induction.
+    \end{proof}
+\end{subsequence}
+\begin{lemma}
+    \textup{(Natural numbers have no zero divisors)}. Let $n, m$ be natural numbers. Then $n \times m = 0$ if and only if at least one of $n, m$ is equal to zero. In particular, if $n$ and $m$ are both positive, then $nm$ is also positive.
+\end{lemma}
+\begin{proof}
+    We start with the left to right case. If $n \times m = 0$, then we need to prove that either $n$ or $m$ is zero. Let's assume than neither $n$ nor $m$ is zero (i.e.\@ we can use $n\next$ and $m\next$ instead). Then $(n\next) \times (m\next) = (n\times (m\next)) + m\next$ (or $(m\next) + (n\next) = (m \times (n\next)) + (n\next)$) by Definition~\ref{def:nat_mul}. We can conclude that in both cases, adding a natural number with a positive natural number will result in positive number by Proposition~\ref{prop:pos_plus_nat_is_pos}. That contradicts to $(n\next) \times (m\next)\contreq 0$. Thus, either $n$ or $m$ must be zero.
+
+    The right to left case: if either $n$ or $m$ is zero, then $n\times m = 0 \times m := 0$ by Definition~\ref{def:nat_mul} or $n \times m = n \times 0 = 0 \times n = 0$ by Lemma~\ref{lem:nat_mul_0_commutative}. What closes both directions. 
+    
+    If both, $n$ and $m$, are positive natural numbers (i.e.~$n\next$ and $m\next$), then $(n\next)\times(m\next)$ is also positive as shown above.
+\end{proof}
+
+\begin{proposition}
+     \textup{(Distributive law).} For any natural numbers $a, b, c$, we have $a(b + c) = ab + ac$ and $(b + c)a = ba + ca$.\label{prop:mul_distributive}
+\end{proposition}
+
+\begin{proof}
+    The case $a(b + c) = ab + ac$. Let's induct on $a$. The base case,
+    \begin{align*}
+        0(b+c) &= 0b+0c \\
+        0&=0 + 0 && \text{Definition~\ref{def:nat_mul}}\\
+        0&=0 && \text{Definition~\ref{def:sum}}
+    \end{align*}
+    The step case, we assume that $a(b+c)=ab+ac$ to prove $a\next(b+c) = (a\next)b + (a\next)c$
+    \begin{align*}
+        a\next(b+c)&=a(b+c) + (b+c)&&\text{Definition~\ref{def:nat_mul}}\\
+        &= ab+ac + b + c&& \text{Inductive Hypothesis}\\
+        &= ab + b + ac + c && \text{Propositions~\ref{prop:sum_commutative} and~\ref{prop:sum_associative}}\\
+        &= (a\next)b + (a\next)c && \text{Definition~\ref{def:nat_mul}}
+    \end{align*}
+    what closes the induction for the former case.
+    The case $(b + c)a = ba + ca$. Again, inducting on $a$. For the base case:
+    \begin{align*}
+        (b+c)0 &= b0 +c0 \\
+        0 &= 0 + 0 && \text{Lemma~\ref{lem:nat_mul_0_commutative}}\\
+        0&=0 && \text{Lemma~\ref{lem:sum_zero_commutative}}
+    \end{align*}
+    For the step case, assuming that $(b+c)a = ba + ca$, we need to prove $(b+c)(a\next) = b(a\next)+c(a\next)$
+    \begin{align*}
+        (b+c)(a\next) &= (b+c)a+ (b+c) && \text{Lemma~\ref{lem:nat_suc_mul_commutative}}\\
+        &= ba + ca + b + c && \text{Inductive Hypothesis}\\
+        & = ba + b + ca + c && \text{Proposition~\ref{prop:sum_commutative} and~\ref{prop:sum_associative}}\\
+        & = b(a\next) + c(a\next) && \text{Lemma~\ref{lem:nat_suc_mul_commutative}}
+    \end{align*}
+    what closes the induction for the latter case.
+\end{proof}
+
+\begin{proposition}
+    \textup{(Multiplication is associative).} For any natural numbers $a,b,c$ we have $(a \times b) \times c = a \times (b\times c)$.
+    \end{proposition}
+\begin{proof}
+    Let's induct on $a$. The base case:
+    \begin{align*}
+        (0\times b) \times c &= 0 \times (b \times c) \\
+        0 \times c &= 0 && \text{By Definition~\ref{def:nat_mul} and Proposition~\ref{prop:mul_nat_is_nat}}\\
+        0 &= 0 && \text{By Definition~\ref{def:nat_mul}}
+    \end{align*}
+    For the step case, we need to prove that $((a\next)\times b) \times c = (a\next) \times (b\times c)$, given $(a\times b)\times c = a \times (b\times c)$:
+    \begin{align*}
+        ((a\next)\times b) \times c &= ((a \times b) + b) \times c && \text{By Definition~\ref{def:nat_mul}}\\
+        &= (a \times b) \times c + (b \times c) && \text{By Proposition~\ref{prop:mul_distributive}}\\ 
+        &= a\times (b \times c) + (b \times c) && \text{By the Inductive Hypothesis}\\
+        &= (a\next)\times(b\times c) && \text{By Definition~\ref{def:nat_mul}}
+    \end{align*}
+    what closes the induction.
+\end{proof}
+\begin{proposition}
+    \textup{(Multiplication preserves the order).} If $a, b$ are natural numbers such that $a < b$, and $c$ is positive, then $ac<bc$\label{prop:nat_mul_preserve_order}.
+\end{proposition}
+\begin{proof}
+    Since $c$ is positive, we can denote it as $\bar{c}\next$. Let's induct on $\bar{c}$. The base case: 
+    \begin{align*}
+        a &< b\\
+        0 + a &<0 + b && \text{By Definition~\ref{def:sum} and Proposition~\ref{prop:sum_preserve_order}}\\
+        (a\times 0) + a &<(b\times 0) + b && \text{By Definition~\ref{def:nat_mul}}\\
+        a(0\next) &< b(0\next) && \text{By Definition~\ref{def:nat_mul} and Lemma~\ref{lem:nat_mul_commutative}}\\
+        a(\bar{c}\next) &< b(\bar{c}\next)
+    \end{align*}
+    For the step case, given $a(\bar{c}\next)<b(\bar{c}\next)$, we need to prove that $a((\bar{c}\next)\next)<b((\bar{c}\next) \next)$:
+    \begin{align*}
+        a(\bar{c}\next)&<b(\bar{c}\next) && \text{By the Inductive Hypothesis}\\
+        a(\bar{c}\next) + \bar{c}\next &< b(\bar{c}\next) + \bar{c}\next &&  \text{By Proposition~\ref{prop:sum_preserve_order}}\\
+        a((\bar{c}\next)\next)&<b((\bar{c}\next) \next) && \text{By Lemma~\ref{lem:nat_mul_commutative} and Definition\ref{def:nat_mul}}
+    \end{align*}
+\end{proof}
+
+\begin{corollary}
+    \textup{(Cancellation law).} Let $a, b, c$ be a natural numbers such that $ac=bc$ and $c\neq 0$. Then $a=b$. 
+\end{corollary}
+\begin{proof}
+Let's apply the contrapositive property of implication: if $a\neq b$ or, in other words, $a>b$ exclusively or $a<b$, then $ac\neq bc$ or $c=0$. If $c\neq 0$ and $a>b$, then $ac\lessgtr bc$ by Proposition~\ref{prop:nat_mul_preserve_order}, which means $ac\neq bc$ by Proposition~\ref{prop:nat_num_trichotomy}. Since Proposition~\ref{prop:nat_num_trichotomy} requires $c=0$, we need to consider $c=0$. If $c = 0$, then the consequent is trivially satisfied.
+\end{proof}
+\begin{proposition}
+     \textup{(Euclidean algorithm).} Let $n$ be a natural number, and let $q$ be a positive number. Then there exist natural numbers $m, r$ such that $0 \leq r < q$ and $n = mq + r$\label{prop:euclidean_alg}.
+\end{proposition}
+
+\begin{proof}
+     Now, we fix $q$ and induct on $n$. For the base case $n=0$, we have $0 = mq + r$. To satisfy the statement, both terms of RHS must be equal to zero. Indeed, there exist $m=0$ and $r=0$ that satisfy the statement and do not violate the condition $0\leq r < q$. For the step case, we assume that the implication holds for $n$, and we need to prove that it holds for $n\next$.
+     \begin{align*}
+        n\next &= (mq + r)\next && \text{Inductive Hypothesis}\\
+        &= mq + (r\next) && \text{By Proposition~\ref{prop:sum_commutative} and Definition~\ref{def:sum}}
+     \end{align*}
+     if $r\next < q$, then $0\leq r<r\next< q$ by Lemma~\ref{lem:nnext>n} and Proposition~\ref{prop:order_transitive}. If $r\next = q$, then $mq + (r\next)= mq + q = (m\next)q + 0 = \bar{m}q + \bar{r}$ by Definition~\ref{def:nat_mul}. The case $r\next > q$ is not relevant due to Proposition~\ref{prop:order_anext_geq_b}.
+\end{proof}
+
+\begin{definition}
+    \textup{(Exponentiation for natural numbers)}. Let $m$ be a natural number. To raise $m$ to the power $0$, we define $m^0 :=1$. Now suppose recursively that $m^n$ has been defined for some natural number $n$, then we define $m^{n++} := m^n \times m$.\label{def:nat_exp}
+\end{definition}
+
+\begin{proposition}
+    $(a + b)^2 = (a^2 + 2ab + b^2)$ for all natural numbers $a, b$.
+\end{proposition}
+\begin{proof}
+    \begin{align*}
+        (a+b)^2 &= (a+b)^{1\next}\\
+        &= (a+b)\times(a+b) && \text{By Definition~\ref{def:nat_exp}}\\
+        &= (a+b)a + (a+b)b && \text{By Proposition~\ref{prop:mul_distributive}}\\
+        &= aa + ab + ab + bb && \text{By Proposition~\ref{prop:mul_distributive}}\\
+        &= a^2 + (1\times ab) + ab + b^2 && \text{By Definition~\ref{def:nat_exp} and Proposition~\ref{lem:nat_mul_1_identity}}\\
+        &= a^2 + (1\next)ab + b^2 && \text{By Definition~\ref{def:nat_mul}}\\
+        &= a^2 + 2ab + b^2 && \text{By Definition~\ref{def:nat_num_repres}}\\
+    \end{align*}
+\end{proof}
+

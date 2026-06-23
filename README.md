@@ -8,7 +8,7 @@ The following repo contains my solutions and progress to the exercises of Terenc
 
 ### Analysis I
 
-- [ ] Chapter 2
+- [X] Chapter 2
 - [ ] Chapter 3
 - [ ] Chapter 4
 - [ ] Chapter 5
