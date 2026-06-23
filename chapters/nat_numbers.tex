@@ -511,7 +511,12 @@ Let's apply the contrapositive property of implication: if $a\neq b$ or, in othe
 \end{proposition}
 
 \begin{proof}
-    Since $q$ is a positive number, we can denote it as $\bar{q}\next$. Now, we fix $\bar{q}\next$ and induct on $n$. For the base case $n=0$, we have $0 = m(\bar{q}\next) + r$. To satisfy the statement, both terms of RHS must be equal to zero. Indeed, there exist $m=0$ and $r=0$ that satisfy the statement and do not violate the condition $0\leq r < q$. For the step case, we assume that the implication holds for $n$, and we need to prove that it holds for $n\next$. $n$
+     Now, we fix $q$ and induct on $n$. For the base case $n=0$, we have $0 = mq + r$. To satisfy the statement, both terms of RHS must be equal to zero. Indeed, there exist $m=0$ and $r=0$ that satisfy the statement and do not violate the condition $0\leq r < q$. For the step case, we assume that the implication holds for $n$, and we need to prove that it holds for $n\next$.
+     \begin{align*}
+        n\next &= (mq + r)\next && \text{Inductive Hypothesis}\\
+        &= mq + (r\next) && \text{By Proposition~\ref{prop:sum_commutative} and Definition~\ref{def:sum}}
+     \end{align*}
+     if $r\next < q$, then $0\leq r<r\next< q$ by Lemma~\ref{lem:nnext>n} and Proposition~\ref{prop:order_transitive}. If $r\next = q$, then $mq + (r\next)= mq + q = (m\next)q + 0 = \bar{m}q + \bar{r}$ by Definition~\ref{def:nat_mul}. The case $r\next > q$ is not relevant due to Proposition~\ref{prop:order_anext_geq_b}.
 \end{proof}
 
 \begin{definition}
