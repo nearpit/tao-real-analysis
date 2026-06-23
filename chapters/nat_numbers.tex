@@ -348,6 +348,17 @@
     \begin{proof}
         Let's induct on $n$. The base case would be $n:= 0$. By definition~\ref{def:nat_mul}, $0\times m := 0$ which is a natural number. Now suppose $n \times m$ is a natural number. Then $\left(n\next\right) \times m := \left(n \times m\right) + m$ by Definition~\ref{def:nat_mul}. Since $\left(n \times m\right)$ is a natural number by the inductive hypothesis and $m$ is a natural number, the sum of two natural numbers is also a natural number by Proposition~\ref{prop:sum_nat_is_nat}. That closes the induction.
     \end{proof}
+    \begin{lemma}
+        $1\times n= n$ for all natural numbers.\label{lem:nat_mul_1_identity} 
+    \end{lemma}
+    \begin{proof}
+        \begin{align*}
+            1\times n &= (0\next) n &&  \text{By Definition~\ref{def:nat_num_repres}}\\
+            &= (0 \times n) + n && \text{By Definition~\ref{def:nat_mul}}\\
+            &= 0 + n && \text{By Definition~\ref{def:nat_mul}}\\
+            &= n && \text{By Definition~\ref{def:sum}}
+        \end{align*}
+    \end{proof}
 \end{subsequence}
 \forcenumber{3}
 \begin{subsequence}
@@ -493,6 +504,32 @@
     \textup{(Cancellation law).} Let $a, b, c$ be a natural numbers such that $ac=bc$ and $c\neq 0$. Then $a=b$. 
 \end{corollary}
 \begin{proof}
-Let's apply the contrapositive property of implication: if $a\neq b$ or, in other words, $a>b$ exclusively or $a<b$, then $ac\neq bc$ or $c=0$. If $c\neq 0$ and $a>b$, then $ac\lessgtr bc$ by Proposition~\ref{prop:nat_mul_preserve_order}, which means $ac\neq bc$ by Proposition~\ref{prop:nat_num_trichotomy}. Since Proposition~\ref{prop:nat_num_trichotomy} requires $c=0$, we need to consider $c=0$. If $c = 0$, then $c = 0$ trivially satisfies the conclusion.
+Let's apply the contrapositive property of implication: if $a\neq b$ or, in other words, $a>b$ exclusively or $a<b$, then $ac\neq bc$ or $c=0$. If $c\neq 0$ and $a>b$, then $ac\lessgtr bc$ by Proposition~\ref{prop:nat_mul_preserve_order}, which means $ac\neq bc$ by Proposition~\ref{prop:nat_num_trichotomy}. Since Proposition~\ref{prop:nat_num_trichotomy} requires $c=0$, we need to consider $c=0$. If $c = 0$, then the consequent is trivially satisfied.
+\end{proof}
+\begin{proposition}
+     \textup{(Euclidean algorithm).} Let $n$ be a natural number, and let $q$ be a positive number. Then there exist natural numbers $m, r$ such that $0 \leq r < q$ and $n = mq + r$\label{prop:euclidean_alg}.
+\end{proposition}
+
+\begin{proof}
+    Since $q$ is a positive number, we can denote it as $\bar{q}\next$. Now, we fix $\bar{q}\next$ and induct on $n$. For the base case $n=0$, we have $0 = m(\bar{q}\next) + r$. To satisfy the statement, both terms of RHS must be equal to zero. Indeed, there exist $m=0$ and $r=0$ that satisfy the statement and do not violate the condition $0\leq r < q$. For the step case, we assume that the implication holds for $n$, and we need to prove that it holds for $n\next$. $n$
+\end{proof}
+
+\begin{definition}
+    \textup{(Exponentiation for natural numbers)}. Let $m$ be a natural number. To raise $m$ to the power $0$, we define $m^0 :=1$. Now suppose recursively that $m^n$ has been defined for some natural number $n$, then we define $m^{n++} := m^n \times m$.\label{def:nat_exp}
+\end{definition}
+
+\begin{proposition}
+    $(a + b)^2 = (a^2 + 2ab + b^2)$ for all natural numbers $a, b$.
+\end{proposition}
+\begin{proof}
+    \begin{align*}
+        (a+b)^2 &= (a+b)^{1\next}\\
+        &= (a+b)\times(a+b) && \text{By Definition~\ref{def:nat_exp}}\\
+        &= (a+b)a + (a+b)b && \text{By Proposition~\ref{prop:mul_distributive}}\\
+        &= aa + ab + ab + bb && \text{By Proposition~\ref{prop:mul_distributive}}\\
+        &= a^2 + (1\times ab) + ab + b^2 && \text{By Definition~\ref{def:nat_exp} and Proposition~\ref{lem:nat_mul_1_identity}}\\
+        &= a^2 + (1\next)ab + b^2 && \text{By Definition~\ref{def:nat_mul}}\\
+        &= a^2 + 2ab + b^2 && \text{By Definition~\ref{def:nat_num_repres}}\\
+    \end{align*}
 \end{proof}
 
