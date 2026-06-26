@@ -1,41 +1,59 @@
 \section{Mathematical statements}
 \begin{exercise}
-\color{red}
     What is the negation of the statement ``either $X$ is true or $Y$ is true, but not both''?
 \end{exercise}
 \begin{solution}
-$X$ and $Y$ are false or $X$ and $Y$ are true.
+$X$ and $Y$ are false or $X$ and $Y$ are true. 
 \end{solution}
 
 \begin{exercise}
-\color{red}
     What is the negation of the statement ``$X$ is true if and only if $Y$ is true''?
 \end{exercise}
 \begin{solution}
-    ``$X$ is false iff $Y$ is false''
+    $X$ is false iff $Y$ is false
 \end{solution}
 
 \begin{exercise}
-\color{red}
     Suppose that you have shown that whenever $X$ is true, then $Y$ is true, and whenever $X$ is false, then $Y$ is false. Have you demonstrated that $X$ and $Y$ are logically equivalent? Explain.
 \end{exercise}
 \begin{solution}
-    I assume, yes. A \textbf{well-defined} statement can be either true or false only (all possible values). Now, we consider the assumptions: (1) if $X$ is false, then $Y$ is false ($Y$ is never true in that case), and (2) if $X$ is true, then $Y$ is false ($Y$ is never true here). Thus, both statements coincide in all possible values what makes them ``equivalent''.
+    A well-defined statement can be either true or false only (all possible values). Now, we consider the assumptions: (1) if $X$ is false, then $Y$ is false ($Y$ is never true in that case), and (2) if $X$ is true, then $Y$ is true ($Y$ is never false here). Thus, both statements coincide in all possible values what makes them ``equivalent''.
 \end{solution}
 
 \begin{exercise}
-\color{red}
+    Suppose that you have shown that whenever $X$ is true, then $Y$ is true, and whenever $Y$ is false, then $X$ is false. Have you demonstrated that $X \Leftrightarrow Y$? Explain.
+\end{exercise}
+\begin{solution}
+    No. If $X$ is true, then $Y$ is true: we exclude only the case $X$ is true and $Y$ is false. If $Y$ is false, then $X$ is false: we exclude the case $X$ is true and $Y$ is false. The both cases represent the same statement. As the result, the case $X$ is False and $Y$ is True is missing. Thus, $X$ and $Y$ are not being proven to be logically equivalent.
+\end{solution}
+
+\begin{exercise}
+    \color{red}
     Suppose that you have shown that $X$ is true iff $Y$ is true, and you know that $Y$ is true iff $Z$ is true. Is this enough to show that $X, Y, Z$ are logically equivalent? Explain.
 \end{exercise}
 \begin{solution}
-    Yes. We know that the pairs $(X, Y)$ and $(Y, Z)$ are logically equivalent, but we don't know whether $X$ and $Z$ are equivalent. If $X$ is true/false, then $Y$ is true/false, and if $Y$ is true/false, then $Z$ is also true/false. We can also prove the same, but going from left to right ($X\rightarrow Y\rightarrow Z$) and from right-to-left ($Z\rightarrow Y\rightarrow X$).
+    Yes. We know that the pairs $(X, Y)$ and $(Y, Z)$ are logically equivalent, but we don't know whether $X$ and $Z$ are equivalent. If $X$ is true/false, then $Y$ is true/false, and if $Y$ is true/false, then $Z$ is also true/false. 
 \end{solution}
 \begin{exercise}
-    \color{red}
     Suppose that you have shown that whenever $X$ is true, then $Y$ is true; that if $Y$ is true, then $Z$ is true; and if $Z$ is true, then $X$ is true. Is this enough to show that $X, Y, Z$ are logically equivalent? Explain.
 \end{exercise}
 \begin{solution}
-    Yes, for all pairs of statements, we can construct the following. Let's start at $X$.\ (Forward direction) If $X$ is true, then $Y$ is also true.\ (Reverse direction) If $Y$ is true, then $Z$ is also true, and if $Z$ is true, then $X$ is also true. That closes the cycle in both ways for all pairs, thus the statements logically equivalent.
+    Yes. Let's construct a logical table of all possible cases:
+    \begin{center}
+        \begin{tabular}{ccccc}
+            $X$ & $Y$ & $Z$ & Possible? & If not, why?\\
+            \hline
+            False & False & False & Yes\\
+            False & False & True & No & $Y \implies Z$\\
+            False & True & False & No & $X \implies Y$\\
+            False & True & True & No & $Z \implies X$\\
+            True & False & False & No & $X \implies Y$\\
+            True & False & True & No & $X \implies Y$\\
+            True & True & False & No & $Y \implies Z$\\
+            True & True & True & Yes\\
+        \end{tabular}
+    \end{center}
+    What results $X, Y, Z$ to be logically equivalent by definition.
 \end{solution}
 
 \section{Implication}
@@ -49,6 +67,6 @@ The main ideas in the chapter are the following:
         X \implies Y & \notiff Y \implies X & \text{Converse}\\
         X \implies Y & \notiff \neg X \implies \neg Y & \text{Inverse}
     \end{align*}
-    \item Although, vacuous hypothesis can be viewed as ``useless'', it can still be used for a proof by contradiction, for instance. For that case, we need to have a consequent that is knows to be false. 
+    \item Although, vacuous hypothesis can be viewed as ``useless'', it can still be used for a proof by contradiction using Contrapositive property, for instance. For that case, we need to have a consequent of the original implication to be known to be false. 
 \end{itemize}
 \section{The structure of proofs}
