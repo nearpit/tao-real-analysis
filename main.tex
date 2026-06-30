@@ -8,6 +8,7 @@ by Terence Tao}
 \usepackage{stmaryrd}
 \usepackage{amssymb,amsmath,amsthm,,mathrsfs}
 \usepackage{xcolor}
+\usepackage{enumitem}
 \setlength{\thickmuskip}{5mu plus 3mu}
 \DeclareMathOperator{\next}{\!+\!+}
 \DeclareMathOperator{\contreq}{\stackrel{\lightning}{=}}
@@ -50,6 +51,17 @@ by Terence Tao}
 }{%
   \setcounter{definition}{\value{parentnumber}}% Restore main number
 }
+
+\newenvironment{subexercises}{%
+  \refstepcounter{exercise}% Claim the shared number, e.g. A.6.1
+  \setcounter{parentnumber}{\value{exercise}}% Snapshot it
+  \renewcommand{\theexercise}{%
+    \thesection.\arabic{parentnumber}%
+    (\@alph{\numexpr\value{exercise}-\value{parentnumber}\relax})%
+  }%
+}{%
+  \setcounter{exercise}{\value{parentnumber}}% Restore main number
+}
 \makeatother % Locks internal commands again
 
 
@@ -59,8 +71,7 @@ by Terence Tao}
 \tableofcontents
 
 \chapter{Introduction}
-No exercises in this chapter.
-
+\include{chapters/no_exercise}
 \chapter{Starting at the beginning: the natural numbers}
 \include{chapters/nat_numbers/peano}
 \include{chapters/nat_numbers/add}
