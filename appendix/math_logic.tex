@@ -134,14 +134,25 @@ No exercise in this section.
 \section{Equality}
 \begin{axiom}
     \textup{(Reflexivity)}. Given any object $x$, we have $x=x$.
+    \label{ax:eq_reflexivity}
 \end{axiom}
 \begin{axiom}
-    \textup{(Symmetry)}. Given any two objects $x$ and $y$ of the same type, if $x=y$, then $y=x$.
+    \textup{(Symmetry)}. Given any two objects $x$ and $y$ of the 
+    same type, if $x=y$, then $y=x$.
+    \label{ax:eq_symmetry}
 \end{axiom}
 \begin{axiom}
     \textup{(Transitivity)}. Given any three objects $x, y, z$ of the same type, if $x=y$ and $y=z$, then $x=z$.
+    \label{ax:eq_transitivity}
 \end{axiom}
 \begin{axiom}
     \textup{(Substitution)}. Given any two objects $x$ and $y$ of the same type, if $x=y$, then $f(x)=f(y)$ for all functions or operations $f$. Similarly, for any property $P(x)$ depending on $x$, if $x=y$, then $P(x) \Leftrightarrow P(y)$.
+    \label{ax:eq_substitution}
 \end{axiom}
 \setcounter{exercise}{0}
+\begin{exercise}
+    Suppose you have four real numbers $a, b, c, d$, and you know that $a=b$ and $c=d$. Use the above four axioms to deduce that $a+d=b+c$
+\end{exercise}
+\begin{solution}
+    Let's define a function $f(x):= x + c$. By Axion~\ref{ax:eq_substitution} $f(a) = f(b) \Leftrightarrow a+c = b + c$. Let's define another function $g(x):= b + x$. Then again $g(d) = f(c) \Leftrightarrow b+d = b + c$. If $b+d=b+c$, then $b+c=b+d$ by Axiom~\ref{ax:eq_symmetry}. If $b+c=b+d$ and $b+c= a+c$, then $a+c=b+d$ by Axiom~\ref{ax:eq_transitivity}.
+\end{solution}
