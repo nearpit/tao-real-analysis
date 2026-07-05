@@ -1,4 +1,5 @@
 \section{Fundamentals}
+{\color{red} What is an object definition?}
 \begin{axiom}
     \textup{(Sets are objects.)} If $A$ is a set, then $A$ is also an object. In particular, given two sets $A$ and $B$, it is meaningful to ask whether $A$ is also an element of $B$. 
 \end{axiom}
@@ -10,32 +11,63 @@
  \end{axiom}
 
  \begin{proposition}
+        \color{red}
     There is exactly one empty set $\emptyset$.
  \end{proposition}
  \begin{proof}
-    Let us assume that $\emptyset^\prime$ is also an empty set. Based on Axiom~\ref{ax:emptyset}, since no elements are in both sets, then all elements (in particular, the lack of them), that are in $\emptyset$, are also in $\emptyset^\prime$ and vice versa. That makes $\emptyset^\prime = \emptyset$. 
+    First, there's at least one empty set by Axiom~\ref{ax:emptyset}.
+    Second, we show that there's no more than one empty set.
+    Let us assume that $\bar{\emptyset}$ is also an empty set s.t. $\bar{\emptyset} \neq \emptyset$. Based on Axiom~\ref{ax:emptyset}, since no elements are in both sets, then all elements (in particular, the lack of them), that are in $\emptyset$, are also in $\bar{\emptyset}$ and vice versa. That makes $\emptyset \contreq \emptyset$. Since there's at least one empty set but not more than one, then there exists exactly one empty set.
  \end{proof}
 \forcenumber{5}
 \begin{lemma}
     \textup{(Single choice).} Let $A$ be a non-empty set. Then there exists an object $x$ such that $x \in A$.
 \end{lemma}
 \begin{proof}
-    Let us prove by contradiction. If $A$ is a non-empty set, then no $x$ exists such that $x\in A$. Or in other words, for every object $x$ we have $x\notin A$. But this is the empty set by Axiom~\ref{ax:emptyset}.
+    Let's assume that no $x$ exists such that $x\in A$. Or in other words, for every object $x$ we have $x\notin A$. But this is the empty set by Axiom~\ref{ax:emptyset} what contradicts that $A$ is a non-empty set. What contradicts our assumption of $A$ being non-empty set.
 \end{proof}
 \begin{axiom}
     \textup{(Singleton sets and pair sets).} If $a$ is an object, then there exists a set $\{a\}$ whose only element is $a$, i.e., for every object $y$, we have $y \in \{a\}$ if and only if $y=a$; we refer to ${a}$ as the singleton set whose element is $a$. Furthermore, if $a$ and $b$ are objects, then there exists a set $\{a, b\}$ whose only elements are $a$ and $b$; i.e., for every object $y$, we have $y\in \{a, b\}$ if and only if $y=a$ or $y=b$; we refer to this set as the pair set formed by $a$ and $b$.\label{ax:singleton_pair_sets}
 \end{axiom}
-\begin{proposition}
-    There is only one singleton set for each object $a$.
-\end{proposition}
-\begin{proof}
-    Let's assume that there's another singleton set $a^\prime$ for $a$ different from $a$ which is a singleton set of $a$. Since only $a \in a^\prime$ by Axiom~\ref{ax:singleton_pair_sets}, then for all $x\in a$ it is also $x\in a^\prime$. What makes $a=a^\prime$ by Axiom~\ref{ax:sets_equality} what contradicts our initial assumption.
-\end{proof}
+\forcenumber{8}
+\begin{subsequence}
+    
+    \begin{proposition}
+        \color{red}
+        There is only one singleton set for each object $a$.
+    \end{proposition}
+    \begin{proof}
+        Let's assume that there's another singleton set $\bar{a}$,containing the only element $a$, s.t. $\bar{a}$ is different from the singleton $a$. Since for every object $y \in \bar{a}$, we have $y=a$ by Axiom~\ref{ax:singleton_pair_sets}. Then analogously, for all $x\in a$ we have $x=a$. Since all objects $x$ and $y$ equal to $a$, then $x\in \bar{a}$ and $y \in a$. What makes $a\contreq\bar{a}$ by Axiom~\ref{ax:sets_equality} what contradicts our initial assumption.
+    \end{proof}
+    
+    \begin{proposition}
+        \color{red}
+        Given two objects $a$ and $b$, there is only one pair set formed by $a$ and $b$.
+    \end{proposition}
+    \begin{proof}
+        Let's assume that there's another pair set $\bar{ab}$ that is formed by $a$ and $b$ only and is different from the original pair set $ab$. By Axiom~\ref{ax:singleton_pair_sets} we have $y=a$ or $y=b$ for all $y$ elements of pair set $\bar{ab}$. Analogously for pair set $ab$, for any $x$ elements we have $x=a$ or $x=b$. Since all objects $x$ and $y$ equal to $a$ or $b$, then $x\in \bar{ab}$ and $y \in ab$. What makes $ab\contreq\bar{ab}$ by Axiom~\ref{ax:sets_equality} what contradicts our initial assumption.
+    \end{proof}
+    \begin{proposition}
+        $\{a, b\}={b, a}$ for any objects $a$ and $b$.
+    \end{proposition}
+    \begin{proof}
+        Every element of set $\{a, b\}$ is in the set $\{b, a\}$: $a \in \{b, a\}$ and $b \in \{b, a\}$, and every element of $\{b, a\}$ is in $\{a, b\}$: $b \in \{a, b\}$ and $a \in \{a, b\}$. That concludes that $\{a, b\} = \{b, a\}$ by Axiom~\ref{ax:sets_equality}.
+    \end{proof}
+\end{subsequence}
 
-\begin{proposition}
-   Given two objects $a$ and $b$, there is only one pair set formed by $a$ and $b$.
-\end{proposition}
-
-% \begin{proof}
-%     Let's assume that there's another pair set $AB^\prime$ that is formed by $a$ and $b$ and is different from the original pair set $AB$. By Axiom~\ref{ax:singleton_pair_sets}, 
-% \end{proof}
+\begin{axiom}
+     \textup{(Pairwise union)}. Given any two sets $A, B$, there exists a set $A \cup B$, called the union of $A$ and $B$, whose elements consists of all the elements which belong to A or B or both. In other words, for any object x,
+     \begin{equation*}
+        x \in A \cup B \Leftrightarrow (x\in A \; \text{or} \; x \in B)
+     \end{equation*}\label{ax:pairwise_union}
+\end{axiom}
+\forcenumber{9}
+\begin{subsequence}
+    \begin{proposition}
+        \color{red}
+        If $A, B$ and $A^\prime$ are sets, and $A=A^\prime$, then $A\cup B = A^\prime\cup B$.
+    \end{proposition}
+    \begin{proof} 
+        According to Axiom~\ref{ax:pairwise_union}, $ x \in A \cup B \Leftrightarrow (x\in A \; \text{or} \; x \in B)$. Since $A = A^\prime$, then $x \in A \Leftrightarrow x \in A^\prime$ by Axiom~\ref{ax:sets_equality}. Since $\in$ obeys the axiom of substitution, we can state that $(x\in A \; \text{or} \; x \in B) \Leftrightarrow (x\in A^\prime \; \text{or} \; x \in B)$ what is equivalent to $x \in A^\prime \cup B$ by Axiom~\ref{ax:pairwise_union}. Thus, $A\cup B = A^\prime \cup B$.  
+    \end{proof}
+\end{subsequence}
