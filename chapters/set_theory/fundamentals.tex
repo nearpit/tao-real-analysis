@@ -48,7 +48,7 @@
         Let's assume that there's another pair set $\bar{ab}$ that is formed by $a$ and $b$ only and is different from the original pair set $ab$. By Axiom~\ref{ax:singleton_pair_sets} we have $y=a$ or $y=b$ for all $y$ elements of pair set $\bar{ab}$. Analogously for pair set $ab$, for any $x$ elements we have $x=a$ or $x=b$. Since all objects $x$ and $y$ equal to $a$ or $b$, then $x\in \bar{ab}$ and $y \in ab$. What makes $ab\contreq\bar{ab}$ by Axiom~\ref{ax:sets_equality} what contradicts our initial assumption.
     \end{proof}
     \begin{proposition}
-        $\{a, b\}={b, a}$ for any objects $a$ and $b$.
+        $\{a, b\}=\{b, a\}$ for any objects $a$ and $b$.
     \end{proposition}
     \begin{proof}
         Every element of set $\{a, b\}$ is in the set $\{b, a\}$: $a \in \{b, a\}$ and $b \in \{b, a\}$, and every element of $\{b, a\}$ is in $\{a, b\}$: $b \in \{a, b\}$ and $a \in \{a, b\}$. That concludes that $\{a, b\} = \{b, a\}$ by Axiom~\ref{ax:sets_equality}.
@@ -56,18 +56,40 @@
 \end{subsequence}
 
 \begin{axiom}
-     \textup{(Pairwise union)}. Given any two sets $A, B$, there exists a set $A \cup B$, called the union of $A$ and $B$, whose elements consists of all the elements which belong to A or B or both. In other words, for any object x,
+     \textup{(Pairwise union)}. Given any two sets $A, B$, there exists a set $A \cup B$, called the union of $A$ and $B$, whose elements consist of all the elements which belong to A or B or both. In other words, for any object x,
      \begin{equation*}
         x \in A \cup B \Leftrightarrow (x\in A \; \text{or} \; x \in B)
      \end{equation*}\label{ax:pairwise_union}
 \end{axiom}
-\forcenumber{9}
+\forcenumber{12}
 \begin{subsequence}
     \begin{proposition}
         \color{red}
-        If $A, B$ and $A^\prime$ are sets, and $A=A^\prime$, then $A\cup B = A^\prime\cup B$.
+        If $A, B$ and $A^\prime$ are sets, and $A=A^\prime$, then $A\cup B = A^\prime\cup B$. 
     \end{proposition}
     \begin{proof} 
         According to Axiom~\ref{ax:pairwise_union}, $ x \in A \cup B \Leftrightarrow (x\in A \; \text{or} \; x \in B)$. Since $A = A^\prime$, then $x \in A \Leftrightarrow x \in A^\prime$ by Axiom~\ref{ax:sets_equality}. Since $\in$ obeys the axiom of substitution, we can state that $(x\in A \; \text{or} \; x \in B) \Leftrightarrow (x\in A^\prime \; \text{or} \; x \in B)$ what is equivalent to $x \in A^\prime \cup B$ by Axiom~\ref{ax:pairwise_union}. Thus, $A\cup B = A^\prime \cup B$.  
     \end{proof}
+\end{subsequence}
+
+\begin{lemma}
+    \textup{(Basic properties of unions). If $a$ and $b$ are objects and $A, B, C$ are sets, then}
+\end{lemma}
+\forcenumber{13}
+\begin{subsequence}
+    \begin{lemma}
+        $~\{a, b\} = \{a\} \cup \{b\}$
+    \end{lemma}
+    \begin{proof}
+        
+    \end{proof}
+    \begin{lemma}
+        \textup{(Commutativity).} $A\cup B = B\cup A$
+    \end{lemma}
+    \begin{lemma}
+        \textup{(Associativity).} $(A\cup B) \cup C = A \cup (B\cup C)$
+    \end{lemma}
+    \begin{lemma}
+        $A\cup A = A\cup \emptyset=\emptyset \cup A = A$
+    \end{lemma}
 \end{subsequence}
